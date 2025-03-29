@@ -92,6 +92,12 @@ FBXSDK/*.exp
 FBXSDK/*.exe
 FBXSDK/*.obj
 
+# 音楽ファイル（mp3）
+*.mp3
+
+# フォントファイル（ttf）
+*.ttf
+
 # その他の不要ファイル
 Thumbs.db
 *.bak
