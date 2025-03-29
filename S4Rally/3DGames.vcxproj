@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{8d79e691-98b5-47b9-bb1b-2b7f4f61c86a}</ProjectGuid>
+    <RootNamespace>_3DGames</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>DX_SRC_COMPILE;DX_LOAD_FBX_MODEL</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Users\tkond\OneDrive\デスクトップ\3DGames\FBXSDK\2020.3.7\include;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\bullet-2.75_rename\src;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\jpeg-9a;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\liboggSVN\include;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\libtheoraSVN\include;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\libvorbisSVN\include;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\libvorbisSVN\lib;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\lpng1637;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\opus-1.1.1\include;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\opus-1.1.1\celt;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\opus-1.1.1\silk;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\opus-1.1.1\win32;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\opusfile-0.7\include;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\tiff-4.0.3\libtiff;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\zlib-1.2.12</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libfbxsdk-mt.lib;libxml2-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>DX_SRC_COMPILE;DX_LOAD_FBX_MODEL</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Users\tkond\OneDrive\デスクトップ\3DGames\FBXSDK\2020.3.7\include;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\bullet-2.75_rename\src;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\jpeg-9a;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\liboggSVN\include;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\libtheoraSVN\include;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\libvorbisSVN\include;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\libvorbisSVN\lib;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\lpng1637;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\opus-1.1.1\include;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\opus-1.1.1\celt;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\opus-1.1.1\silk;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\opus-1.1.1\win32;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\opusfile-0.7\include;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\tiff-4.0.3\libtiff;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\zlib-1.2.12</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libfbxsdk-mt.lib;libxml2-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>DX_SRC_COMPILE;DX_LOAD_FBX_MODEL</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Users\tkond\OneDrive\デスクトップ\3DGames\FBXSDK\2020.3.7\include;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\bullet-2.75_rename\src;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\jpeg-9a;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\liboggSVN\include;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\libtheoraSVN\include;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\libvorbisSVN\include;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\libvorbisSVN\lib;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\lpng1637;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\opus-1.1.1\include;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\opus-1.1.1\celt;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\opus-1.1.1\silk;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\opus-1.1.1\win32;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\opusfile-0.7\include;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\tiff-4.0.3\libtiff;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\zlib-1.2.12</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Users\tkond\OneDrive\デスクトップ\3DGames\FBXSDK\2020.3.7\lib\x64\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libfbxsdk-mt.lib;libxml2-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>DX_SRC_COMPILE;DX_LOAD_FBX_MODEL</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Users\tkond\OneDrive\デスクトップ\3DGames\FBXSDK\2020.3.7\include;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\bullet-2.75_rename\src;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\jpeg-9a;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\liboggSVN\include;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\libtheoraSVN\include;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\libvorbisSVN\include;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\libvorbisSVN\lib;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\lpng1637;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\opus-1.1.1\include;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\opus-1.1.1\celt;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\opus-1.1.1\silk;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\opus-1.1.1\win32;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\opusfile-0.7\include;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\tiff-4.0.3\libtiff;C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\External\zlib-1.2.12</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Users\tkond\OneDrive\デスクトップ\3DGames\DxLib_VC\プロジェクトに追加すべきファイル_VC用;C:\Users\tkond\OneDrive\デスクトップ\3DGames\FBXSDK\2020.3.7\lib\x64\release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libfbxsdk-mt.lib;libxml2-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="car.cpp" />
+    <ClCompile Include="controller.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxArchive_.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxASyncLoad.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxBaseFunc.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxBaseImage.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxChar.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxCharCodeTable.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxFile.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxFont.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxGateway.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxGraphics.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxGraphicsFilter.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxHandle.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxHeap.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxInput.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxInputString.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxLive2DCubism4.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxLog.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxMask.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxMath.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxMemImg.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxMemImgDrawFunction0.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxMemImgDrawFunction1.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxMemImgDrawFunction2.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxMemImgDrawFunction3.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxMemory.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxModel.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxModelLoader0.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxModelLoader1.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxModelLoader2.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxModelLoader3.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxModelLoader4.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxModelLoaderVMD.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxModelRead.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxMovie.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxNetwork.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxRingBuffer.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxSoftImage.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxSound.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxSoundConvert.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxSystem.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxThread.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxUseCLib.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxUseCLibLive2DCubism4.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxUseCLibOgg.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxUseCLibPhysics.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxBaseFuncWin.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxBaseImageWin.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxFileWin.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxFontWin.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxGraphicsAPIWin.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxGraphicsD3D11.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxGraphicsD3D9.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxGraphicsFilterD3D11.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxGraphicsFilterD3D9.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxGraphicsFilterWin.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxGraphicsWin.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxGuid.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxInputWin.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxKeyHookBinary.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxLive2DCubism4Win.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxLogWin.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxMaskD3D11.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxMaskD3D9.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxMaskWin.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxMemoryWin.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxModelD3D11.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxModelD3D9.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxModelWin.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxMovieWin.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxNetworkWin.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxShaderCodeBin_Base3D_D3D11.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxShaderCodeBin_Base3D_D3D9.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxShaderCodeBin_Base_D3D11.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxShaderCodeBin_Base_D3D9.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxShaderCodeBin_Filter_D3D11.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxShaderCodeBin_Filter_D3D9.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxShaderCodeBin_Live2D_Cubism4_D3D11.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxShaderCodeBin_Live2D_Cubism4_D3D9.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxShaderCodeBin_Model_D3D11.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxShaderCodeBin_Model_D3D9.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxShaderCodeBin_RgbaMix_D3D11.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxShaderCodeBin_RgbaMix_D3D9.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxShaderCodeTxt_D3D11.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxShaderCodeTxt_D3D9.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxSoundConvertWin.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxSoundWin.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxSystemWin.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxThreadWin.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxUseCLibOggD3D11.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxUseCLibOggD3D9.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxUseCLibOggWin.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxUseCStrmBaseFilter.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxWinAPI.cpp" />
+    <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxWindow.cpp" />
+    <ClCompile Include="font.cpp" />
+    <ClCompile Include="fps.cpp" />
+    <ClCompile Include="game.cpp" />
+    <ClCompile Include="geometory.cpp" />
+    <ClCompile Include="graphic.cpp" />
+    <ClCompile Include="key.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="map.cpp" />
+    <ClCompile Include="mouse.cpp" />
+    <ClCompile Include="music.cpp" />
+    <ClCompile Include="timer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="car.h" />
+    <ClInclude Include="controller.h" />
+    <ClInclude Include="font.h" />
+    <ClInclude Include="fps.h" />
+    <ClInclude Include="game.h" />
+    <ClInclude Include="geometory.h" />
+    <ClInclude Include="graphic.h" />
+    <ClInclude Include="key.h" />
+    <ClInclude Include="map.h" />
+    <ClInclude Include="mouse.h" />
+    <ClInclude Include="music.h" />
+    <ClInclude Include="timer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="game.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="font\Jiyucho.ttf" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
