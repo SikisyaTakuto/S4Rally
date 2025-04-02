@@ -45,7 +45,7 @@ VOID TimerUpdate(VOID)
             TimerRecordLap(); // 周回タイムを記録
             lapPassed = true; // 通過フラグを立てる
 
-            // 3周完了したらゲームシーンを終了状態に変更
+            // 2周完了したらゲームシーンを終了状態に変更
             if (laps.size() == 2)
             {
                 gameState = STATE_FINISHED;

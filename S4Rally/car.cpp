@@ -377,19 +377,19 @@ VOID ApplySuspension(WheelCollider& wheel, VECTOR hitPos,float deltaTime) {
     float restLength = wheel.suspensionDistance;
 
     // サスペンションが伸びる最大距離 (適宜調整)
-    float maxExtension = 0.05f;
+    float maxExtension = 1.0f;
 
     // サスペンションによる力の初期化
     float springForce = 0.0f;
     float damperForce = 0.0f;
 
     // 車体の最低地上高 (タイヤ半径 + 余裕)
-    float minHeight = wheel.radius + 0.1f;
+    float minHeight = wheel.radius + 0.5f;
 
     // 車の重量に基づく荷重を計算 (各ホイールにかかる重力)
     float wheelLoad = (carInfo.mass * gravity) / 4.0f;
 
-    // 地面との距離を取得 (仮に地面高さを 0.0f とする)
+    // 地面との距離を取得
     float groundHeight = hitPos.y;
 
     // ホイールの現在のY座標
@@ -411,6 +411,7 @@ VOID ApplySuspension(WheelCollider& wheel, VECTOR hitPos,float deltaTime) {
 
         // サスペンションの力を適用 (車体を上下に動かす)
         wheel.center.y += (totalForce / carInfo.mass) * deltaTime;
+        carInfo.position.y += (totalForce / carInfo.mass) * deltaTime;
     }
 
     // サスペンションの最大伸びを超えないように制限
@@ -474,11 +475,10 @@ VOID UpdateCarPitchAndRoll()
     carInfo.rotation.z = rollAngle;  // ロール（Z軸回転）
 }
 
-
 // 重力を適用する関数
 VOID ApplyGravity(float deltaTime) {
 
-    float gravity = -9.81f * 100; // 重力加速度
+    float gravity = -9.81f*20.0f; // 重力加速度
 
     // 4つのタイヤの判定結果をチェック
     struct {
@@ -493,7 +493,7 @@ VOID ApplyGravity(float deltaTime) {
 
     for (int i = 0; i < 4; i++) {
 
-        if (wheels[i].hitPolyDim.HitNum > 0.01f) {
+        if (wheels[i].hitPolyDim.HitNum > 0.001f) {
             car.frontLeft.center.y = stage.frontLeftHitPos.y;
             car.frontRight.center.y = stage.frontRightHitPos.y;
             car.rearLeft.center.y = stage.rearLeftHitPos.y;
@@ -504,25 +504,34 @@ VOID ApplyGravity(float deltaTime) {
             // タイヤが接触していない場合、重力を適用
             if (stage.frontLeftHitPolyDim.HitNum == 0)
             {
-                car.frontLeft.center.y += gravity * deltaTime;
+                car.frontLeft.center.y += (gravity * deltaTime) / 4;
             }
 
             if (stage.frontRightHitPolyDim.HitNum == 0)
             {
-                car.frontRight.center.y += gravity * deltaTime;
+                car.frontRight.center.y += (gravity * deltaTime) / 4;
             }
 
             if (stage.rearLeftHitPolyDim.HitNum == 0)
             {
-                car.rearLeft.center.y += gravity * deltaTime;
+                car.rearLeft.center.y += (gravity * deltaTime) / 4;
             }
 
             if (stage.rearRightHitPolyDim.HitNum == 0)
             {
-                car.rearRight.center.y += gravity * deltaTime;
+                car.rearRight.center.y += (gravity * deltaTime) / 4;
             }
 
-            carInfo.position.y += gravity * deltaTime;
+            // 4輪の高さの平均を求める
+            float avgWheelHeight = (
+                car.frontLeft.center.y +
+                car.frontRight.center.y +
+                car.rearLeft.center.y +
+                car.rearRight.center.y
+                ) / 4.0f;
+
+            // 車体の Y 位置を更新（ホイールの平均値を参考に）
+            carInfo.position.y = avgWheelHeight;
         }
     }
 }

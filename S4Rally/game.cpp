@@ -9,12 +9,9 @@
 #include "music.h"
 #include "graphic.h"
 #include "map.h"
-//#include "rallycar.h"
 #include "timer.h"
 #include "controller.h"
 #include "car.h"
-//#include "wheelcollider.h"
-//#include "carbase.h"
 
 //グローバル変数
 
@@ -52,16 +49,6 @@ RECT LockRunRect;    //ロック
 
 RECT backSceneRect;	 //シーンに戻る
 RECT backPanelRect;  //バックパネル
-
-int BGMVolume = VolumeBGM;	// BGMの音量調整の値
-int BGMVolumeDrawValue;		// BGMの描画で使う値
-
-int SEVolume = VolumeSE;//SEの音量調整の値
-int SEVolumeDrawValue;	// SEの描画で使う値
-
-// 選択感覚を調整するための変数
-int stickCooldown = 0; // クールダウンタイマー
-const int stickCooldownMax = 10; // クールダウン間隔
 
 float LeftPlayerPosition = 990.0f;
 float TopPlayerPosition = 540.0f;
@@ -371,21 +358,6 @@ VOID PlayProc(VOID)
 	//シーン切り替え後のフレーム数をカウントアップ
 	GameSceneFrameCount[NowGameScene]++;
 
-	//if (GetButtonDown(BUTTON_START))
-	//{
-	//	//効果音を再生
-	//	PlayMusic(ButtonClickSE);
-
-	//	//音楽停止
-	//	PauseMusic(&PlayBGM);
-
-	//	//シーン切り替え
-	//	ChangeGameScene =MenuScene;
-
-	//	//すぐに切り替える
-	//	return;
-	//}
-
 	return;
 }
 //プレイ描画
@@ -406,7 +378,6 @@ VOID PlayDraw(VOID)
 	    CarUpdate();
 
 		TimerUpdate();
-		TimerDraw();
 	}
 
 	return;
@@ -473,24 +444,9 @@ VOID ResultDraw(VOID)
 			GameWidth - 200, 0,
 			Color_brack, fontDefault.Handle,
 			"%s%s", GameSceneName[NowGameScene], "描画中");
+
+		TimerDraw();
 	}
-
-	////円の中にマウスの座標が入ったら円の色を帰る
-	//if (CollCircleToMouse(StartCircle) == TRUE)
-	//{
-	//	//円を描画
-	//	DrawEn(StartCircle, Color_tomato, TRUE);
-	//}
-	//else
-	//{
-	//	//円を描画
-	//	DrawEn(StartCircle, Color_white, TRUE);
-	//}
-
-	////とりあえずシーン名を描画
-	//DrawFormatStringToHandle(
-	//	GetGameWindowCenter().x - 160, GetGameWindowCenter().y + 10, Color_brack, fontJiyu100ptFuch.Handle,
-	//	"%s", " Result!!");
 
 	return;
 }
@@ -618,7 +574,5 @@ VOID RuleDraw(VOID)
 			170, 640, Align_Center, Color_brack, fontJiyu50ptFuch.Handle,
 			"%s", "戻る");
 	}
-
-
 	return;
 }

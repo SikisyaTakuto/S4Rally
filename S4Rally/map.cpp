@@ -14,10 +14,10 @@ VOID MapInit(VOID)
     stage.mapHandle = MV1LoadModel("fbx/Stage/SakuraStage4.fbx");
     stage.lockLeft=false;
     stage.lockRight = false;
-    MV1SetPosition(stage.mapHandle, VGet(1000.0f,30.0f, 0.0f));
+    MV1SetPosition(stage.mapHandle, VGet(1000.0f,50.0f, 0.0f));
 
     // モデル全体のコリジョン情報を構築
-    MV1SetupCollInfo(stage.mapHandle, -1, 16, 16, 16);
+    MV1SetupCollInfo(stage.mapHandle, -1, 32, 32, 32);
 
     // モデルの進行方向をセット
     Add = 8;

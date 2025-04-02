@@ -112,12 +112,12 @@ extern Car car;
 extern CarInfo carInfo;
 
 //外部プロトタイプ宣言
-extern VOID CarInit(VOID);                                              // 車両情報の初期化
-extern VOID CarUpdate(VOID);                                            // 車両情報の更新
-extern VOID CarDraw(VOID);                                              // 描画
-extern VOID CarSetCamera(VOID);                                         //カメラ設定
-extern FLOAT CarCulateEngineForce(int gear);                            // ギアの変更
-extern FLOAT CarCulateRPM(float velocity, int gear);                    // RPMの計算関数
-extern VOID CarApplySteering(VOID);                                     // 操舵角度の設定
+extern VOID CarInit(VOID);                              // 車両情報の初期化
+extern VOID CarUpdate(VOID);                            // 車両情報の更新
+extern VOID CarDraw(VOID);                              // 描画
+extern VOID CarSetCamera(VOID);                         // カメラ設定
+extern FLOAT CarCulateEngineForce(int gear);            // ギアの変更
+extern FLOAT CarCulateRPM(float velocity, int gear);    // RPMの計算関数
+extern VOID CarApplySteering(VOID);                     // 操舵角度の設定
 extern FLOAT CarApplyAcceleration(float deltaTime);     // アクセルの適用
-extern FLOAT CarApplyBraking(float deltaTime);          //ブレーキの適用
+extern FLOAT CarApplyBraking(float deltaTime);          // ブレーキの適用
