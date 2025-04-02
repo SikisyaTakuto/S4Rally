@@ -370,55 +370,110 @@ VOID CarBicycleModelUpdate(float deltaTime)
 
 //サスペンションの処理
 VOID ApplySuspension(WheelCollider& wheel, VECTOR hitPos,float deltaTime) {
-    const float gravity = 9.81f; // 重力加速度 (m/s^2)
-    float restLength = wheel.suspensionDistance; // サスペンションの初期長さ
-    float maxExtension = 0.05f; // サスペンションが伸びる最大距離 (適宜調整)
+    // 重力加速度 (m/s^2)
+    const float gravity = 9.81f;
+
+    // サスペンションの初期長さ
+    float restLength = wheel.suspensionDistance;
+
+    // サスペンションが伸びる最大距離 (適宜調整)
+    float maxExtension = 0.05f;
+
+    // サスペンションによる力の初期化
     float springForce = 0.0f;
     float damperForce = 0.0f;
-    float minHeight = wheel.radius + 0.1f; // タイヤ半径 + 少しの余裕
 
-    // 車の重量に基づく荷重
-    float wheelLoad = (carInfo.mass * gravity) / 4.0f; // 各ホイールにかかる重力
+    // 車体の最低地上高 (タイヤ半径 + 余裕)
+    float minHeight = wheel.radius + 0.1f;
 
-    // 地面との距離を取得（仮の地面高さ 0.0f を基準とする）
+    // 車の重量に基づく荷重を計算 (各ホイールにかかる重力)
+    float wheelLoad = (carInfo.mass * gravity) / 4.0f;
+
+    // 地面との距離を取得 (仮に地面高さを 0.0f とする)
     float groundHeight = hitPos.y;
+
+    // ホイールの現在のY座標
     float wheelPosY = wheel.center.y;
+
+    // サスペンションの圧縮量を計算
     float compression = restLength - (wheelPosY - groundHeight);
 
-    // サスペンションの圧縮量が 0 より大きい場合のみ適用
+    // サスペンションの圧縮量が 0 より大きい場合のみ力を適用
     if (compression > 0.0f) {
-        // フックの法則に基づくスプリング力 F = -k * x
+        // フックの法則に基づくスプリング力 F = -k * x (k: バネ定数, x: 圧縮量)
         springForce = -wheel.suspensionSpring.spring * compression;
 
-        // 減衰力 F_d = -c * v (v はホイールの Y 軸速度)
+        // 減衰力 F_d = -c * v (c: 減衰係数, v: ホイールのY軸速度)
         damperForce = -wheel.suspensionSpring.damper * wheel.velocity.y;
 
-        // 合計力
+        // 総合的な力の計算 (バネ力 + 減衰力 + ホイールにかかる荷重)
         float totalForce = springForce + damperForce + wheelLoad;
 
-        // サスペンションの力を適用
+        // サスペンションの力を適用 (車体を上下に動かす)
         wheel.center.y += (totalForce / carInfo.mass) * deltaTime;
     }
 
-    // サスペンションの伸びすぎを制限
+    // サスペンションの最大伸びを超えないように制限
     float maxWheelPosY = groundHeight + restLength + maxExtension;
     if (wheel.center.y > maxWheelPosY) {
-        wheel.center.y = maxWheelPosY;
+        wheel.center.y = maxWheelPosY; // 最大位置を超えたら制限
     }
-    else
-    {
+    else {
+        // 過度に沈み込まないように 0.01f ずつ下げる (サスペンションのバウンドを再現)
         wheel.center.y -= 0.01f;
-        if (wheel.center.y < 0.0f)wheel.center.y = 0.0f;
+
+        // ホイールのY座標が0未満にならないように制限
+        if (wheel.center.y < 0.0f) wheel.center.y = 0.0f;
     }
 
-    // 車体の最低高さを計算 (すべてのホイールの接地面から平均値を取得)
-    float carMinHeight = (car.frontLeft.center.y - wheel.radius + car.frontRight.center.y - wheel.radius + car.rearLeft.center.y - wheel.radius + car.rearRight.center.y - wheel.radius) / 4.0f;
+    // 車体の最低高さを計算 (4輪の接地面の平均)
+    float carMinHeight = (
+        (car.frontLeft.center.y - wheel.radius) +
+        (car.frontRight.center.y - wheel.radius) +
+        (car.rearLeft.center.y - wheel.radius) +
+        (car.rearRight.center.y - wheel.radius)
+        ) / 4.0f;
 
-    // 最低高さを維持
+    // 車体が最低地上高を下回らないように調整
     if (carInfo.position.y < carMinHeight + minHeight) {
         carInfo.position.y = carMinHeight + minHeight;
     }
 }
+
+// 車体のピッチ角とロール角を更新
+VOID UpdateCarPitchAndRoll()
+{
+    // 各ホイールの高さ
+    float frontLeftHeight = car.frontLeft.center.y;
+    float frontRightHeight = car.frontRight.center.y;
+    float rearLeftHeight = car.rearLeft.center.y;
+    float rearRightHeight = car.rearRight.center.y;
+
+    // 車両の前後ホイールの平均高さ
+    float frontAvgHeight = (frontLeftHeight + frontRightHeight) * 0.5f;
+    float rearAvgHeight = (rearLeftHeight + rearRightHeight) * 0.5f;
+
+    // 車両の左右ホイールの平均高さ
+    float leftAvgHeight = (frontLeftHeight + rearLeftHeight) * 0.5f;
+    float rightAvgHeight = (frontRightHeight + rearRightHeight) * 0.5f;
+
+    // ホイールベース（前後ホイール間の距離）
+    float wheelBase = 250.5f; // 仮の値（必要に応じて変更）
+
+    // トレッド幅（左右ホイール間の距離）
+    float trackWidth = 150.2f; // 仮の値（必要に応じて変更）
+
+    // ピッチ角の計算（前後ホイールの高さ差から）
+    float pitchAngle = atan2f(-frontAvgHeight + rearAvgHeight, wheelBase);
+
+    // ロール角の計算（左右ホイールの高さ差から）
+    float rollAngle = atan2f(leftAvgHeight - rightAvgHeight, trackWidth);
+
+    // 車体の回転に反映
+    carInfo.rotation.x = pitchAngle; // ピッチ（X軸回転）
+    carInfo.rotation.z = rollAngle;  // ロール（Z軸回転）
+}
+
 
 // 重力を適用する関数
 VOID ApplyGravity(float deltaTime) {
@@ -590,6 +645,9 @@ VOID CarUpdate(VOID) {
     // ヨーモーメントとスリップアングルを考慮
     ApplyVehicleDynamics(deltaTime);
 
+    // 車体のピッチとロールを更新
+    UpdateCarPitchAndRoll();
+
     // 各ホイールにサスペンションを適用
     ApplySuspension(car.frontLeft,stage.frontLeftHitPos ,deltaTime);
     ApplySuspension(car.frontRight,stage.frontRightHitPos ,deltaTime);
@@ -642,15 +700,38 @@ VOID CarDraw(VOID)
     DrawRotaGraph(1100, 100, 0.1f, 0.0f, tachometerImageHandle, TRUE);
 
     // 針の回転角度を計算 (最小角度 -135度、最大角度 135度)
-    float minAngle = 45.0f * DX_PI / 180.0f; // ラジアンに変換
+
+    // メーターの針が指し示す最小角度（ラジアン単位）。-135度をラジアンに変換
+    float minAngle = 45.0f * DX_PI / 180.0f;
+
+    // メーターの針が指し示す最大角度（ラジアン単位）。135度をラジアンに変換
     float maxAngle = 235.0f * DX_PI / 180.0f;
+
+    // 現在のエンジン回転数に基づき、針の角度を補間計算
+    // carInfo.engineRPM が 0 のとき minAngle、carInfo.redlineRPM のとき maxAngle になる
     float angle = minAngle + (maxAngle - minAngle) * (carInfo.engineRPM / carInfo.redlineRPM);
 
     // 針の回転の基準点（メーター中心からのオフセット）
-    int needleCenterX = 1100; // メーター中心 X
-    int needleCenterY = 100;  // メーター中心 Y
-    int needleOffsetX = 10;   // 画像内の針の回転軸（左上基準）
+
+    // 針の回転中心の X 座標（メーターの中心）
+    int needleCenterX = 1100;
+
+    // 針の回転中心の Y 座標（メーターの中心）
+    int needleCenterY = 100;
+
+    // 針画像の回転軸（画像内のオフセット）
+    // 画像の左上を基準として、針の回転軸がどこにあるかを指定
+
+    // 画像内の針の回転中心の X 座標（左上基準）
+    int needleOffsetX = 10;
+
+    // 画像内の針の回転中心の Y 座標（左上基準）
     int needleOffsetY = 50;
+
+    // 針の画像を回転描画
+    // needleCenterX, needleCenterY を回転の基準点として、画像内の (needleOffsetX, needleOffsetY) を中心に回転
+    // スケール 0.1f（画像を縮小）し、計算した angle の角度で回転
+    // TRUE を指定してアルファブレンドを有効化
     DrawRotaGraph2(needleCenterX, needleCenterY, needleOffsetX, needleOffsetY, 0.1f, angle, needleImageHandle, TRUE);
 
 
