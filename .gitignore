@@ -70,10 +70,3 @@ DxLib_VC/Debug/
 DxLib_VC/Release/
 
 # DxLibSourceTest_WithUseCLib関連の不要ファイル
-DxLibSourceTest_WithUseCLib/
-DxLibSourceTest_WithUseCLib/Debug/
-DxLibSourceTest_WithUseCLib/Release/
-DxLibSourceTest_WithUseCLib/*.lib
-DxLibSourceTest_WithUseCLib/*.dll
-DxLibSourceTest_WithUseCLib/*.exe
-DxLibSourceTest_WithUseCLib/*.obj

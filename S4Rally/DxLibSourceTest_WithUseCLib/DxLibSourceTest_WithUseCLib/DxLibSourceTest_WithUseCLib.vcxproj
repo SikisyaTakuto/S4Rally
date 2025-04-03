@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4ECABB76-7439-49A1-8DC7-8B82D2E512B7}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>DxLibSourceTest_WithUseCLib</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>DxLibSource;External\bullet-2.75_rename\src;External\jpeg-9a;External\liboggSVN\include;External\libtheoraSVN\include;External\libvorbisSVN\include;External\libvorbisSVN\lib;External\lpng1637;External\zlib-1.2.12;External\tiff-4.0.3\libtiff;External\opusfile-0.7\include;External\opus-1.1.1\include;External\opus-1.1.1\celt;External\opus-1.1.1\silk;External\opus-1.1.1\win32</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <DisableSpecificWarnings>4996;4819</DisableSpecificWarnings>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>DxLibLib</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>DxLibSource;External\bullet-2.75_rename\src;External\jpeg-9a;External\liboggSVN\include;External\libtheoraSVN\include;External\libvorbisSVN\include;External\libvorbisSVN\lib;External\lpng1637;External\zlib-1.2.12;External\tiff-4.0.3\libtiff;External\opusfile-0.7\include;External\opus-1.1.1\include;External\opus-1.1.1\celt;External\opus-1.1.1\silk;External\opus-1.1.1\win32</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <DisableSpecificWarnings>4996;4819</DisableSpecificWarnings>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>DxLibLib</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>DxLibSource;External\bullet-2.75_rename\src;External\jpeg-9a;External\liboggSVN\include;External\libtheoraSVN\include;External\libvorbisSVN\include;External\libvorbisSVN\lib;External\lpng1637;External\zlib-1.2.12;External\tiff-4.0.3\libtiff;External\opusfile-0.7\include;External\opus-1.1.1\include;External\opus-1.1.1\celt;External\opus-1.1.1\silk;External\opus-1.1.1\win32</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <DisableSpecificWarnings>4996;4819</DisableSpecificWarnings>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>DxLibLib</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>DxLibSource;External\bullet-2.75_rename\src;External\jpeg-9a;External\liboggSVN\include;External\libtheoraSVN\include;External\libvorbisSVN\include;External\libvorbisSVN\lib;External\lpng1637;External\zlib-1.2.12;External\tiff-4.0.3\libtiff;External\opusfile-0.7\include;External\opus-1.1.1\include;External\opus-1.1.1\celt;External\opus-1.1.1\silk;External\opus-1.1.1\win32</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <DisableSpecificWarnings>4996;4819</DisableSpecificWarnings>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>DxLibLib</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="DxLibSource\DxArchive_.cpp" />
+    <ClCompile Include="DxLibSource\DxASyncLoad.cpp" />
+    <ClCompile Include="DxLibSource\DxBaseFunc.cpp" />
+    <ClCompile Include="DxLibSource\DxBaseImage.cpp" />
+    <ClCompile Include="DxLibSource\DxChar.cpp" />
+    <ClCompile Include="DxLibSource\DxCharCodeTable.cpp" />
+    <ClCompile Include="DxLibSource\DxFile.cpp" />
+    <ClCompile Include="DxLibSource\DxFont.cpp" />
+    <ClCompile Include="DxLibSource\DxGateway.cpp" />
+    <ClCompile Include="DxLibSource\DxGraphics.cpp" />
+    <ClCompile Include="DxLibSource\DxGraphicsFilter.cpp" />
+    <ClCompile Include="DxLibSource\DxHandle.cpp" />
+    <ClCompile Include="DxLibSource\DxHeap.cpp" />
+    <ClCompile Include="DxLibSource\DxInput.cpp" />
+    <ClCompile Include="DxLibSource\DxInputString.cpp" />
+    <ClCompile Include="DxLibSource\DxLive2DCubism4.cpp" />
+    <ClCompile Include="DxLibSource\DxLog.cpp" />
+    <ClCompile Include="DxLibSource\DxMask.cpp" />
+    <ClCompile Include="DxLibSource\DxMath.cpp" />
+    <ClCompile Include="DxLibSource\DxMemImg.cpp" />
+    <ClCompile Include="DxLibSource\DxMemImgDrawFunction0.cpp" />
+    <ClCompile Include="DxLibSource\DxMemImgDrawFunction1.cpp" />
+    <ClCompile Include="DxLibSource\DxMemImgDrawFunction2.cpp" />
+    <ClCompile Include="DxLibSource\DxMemImgDrawFunction3.cpp" />
+    <ClCompile Include="DxLibSource\DxMemory.cpp" />
+    <ClCompile Include="DxLibSource\DxModel.cpp" />
+    <ClCompile Include="DxLibSource\DxModelLoader0.cpp" />
+    <ClCompile Include="DxLibSource\DxModelLoader1.cpp" />
+    <ClCompile Include="DxLibSource\DxModelLoader2.cpp" />
+    <ClCompile Include="DxLibSource\DxModelLoader3.cpp" />
+    <ClCompile Include="DxLibSource\DxModelLoader4.cpp" />
+    <ClCompile Include="DxLibSource\DxModelLoaderVMD.cpp" />
+    <ClCompile Include="DxLibSource\DxModelRead.cpp" />
+    <ClCompile Include="DxLibSource\DxMovie.cpp" />
+    <ClCompile Include="DxLibSource\DxNetwork.cpp" />
+    <ClCompile Include="DxLibSource\DxRingBuffer.cpp" />
+    <ClCompile Include="DxLibSource\DxSoftImage.cpp" />
+    <ClCompile Include="DxLibSource\DxSound.cpp" />
+    <ClCompile Include="DxLibSource\DxSoundConvert.cpp" />
+    <ClCompile Include="DxLibSource\DxSystem.cpp" />
+    <ClCompile Include="DxLibSource\DxThread.cpp" />
+    <ClCompile Include="DxLibSource\DxUseCLib.cpp" />
+    <ClCompile Include="DxLibSource\DxUseCLibLive2DCubism4.cpp" />
+    <ClCompile Include="DxLibSource\DxUseCLibOgg.cpp" />
+    <ClCompile Include="DxLibSource\DxUseCLibPhysics.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxBaseFuncWin.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxBaseImageWin.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxFileWin.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxFontWin.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxGraphicsAPIWin.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxGraphicsD3D11.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxGraphicsD3D9.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxGraphicsFilterD3D11.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxGraphicsFilterD3D9.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxGraphicsFilterWin.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxGraphicsWin.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxGuid.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxInputWin.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxKeyHook.c" />
+    <ClCompile Include="DxLibSource\Windows\DxKeyHookBinary.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxLive2DCubism4Win.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxLogWin.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxMaskD3D11.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxMaskD3D9.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxMaskWin.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxMemoryWin.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxModelD3D11.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxModelD3D9.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxModelWin.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxMovieWin.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxNetworkWin.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxShaderCodeBin_Base3D_D3D11.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxShaderCodeBin_Base3D_D3D9.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxShaderCodeBin_Base_D3D11.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxShaderCodeBin_Base_D3D9.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxShaderCodeBin_Filter_D3D11.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxShaderCodeBin_Filter_D3D9.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxShaderCodeBin_Live2D_Cubism4_D3D11.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxShaderCodeBin_Live2D_Cubism4_D3D9.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxShaderCodeBin_Model_D3D11.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxShaderCodeBin_Model_D3D9.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxShaderCodeBin_RgbaMix_D3D11.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxShaderCodeBin_RgbaMix_D3D9.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxShaderCodeTxt_D3D11.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxShaderCodeTxt_D3D9.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxSoundConvertWin.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxSoundWin.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxSystemWin.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxThreadWin.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxUseCLibOggD3D11.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxUseCLibOggD3D9.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxUseCLibOggWin.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxUseCStrmBaseFilter.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxWinAPI.cpp" />
+    <ClCompile Include="DxLibSource\Windows\DxWindow.cpp" />
+    <ClCompile Include="Test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DxLibSource\DxArchive_.h" />
+    <ClInclude Include="DxLibSource\DxASyncLoad.h" />
+    <ClInclude Include="DxLibSource\DxBaseFunc.h" />
+    <ClInclude Include="DxLibSource\DxBaseImage.h" />
+    <ClInclude Include="DxLibSource\DxChar.h" />
+    <ClInclude Include="DxLibSource\DxCompileConfig.h" />
+    <ClInclude Include="DxLibSource\DxDataType.h" />
+    <ClInclude Include="DxLibSource\DxDataTypeWin.h" />
+    <ClInclude Include="DxLibSource\DxFile.h" />
+    <ClInclude Include="DxLibSource\DxFont.h" />
+    <ClInclude Include="DxLibSource\DxFunctionWin.h" />
+    <ClInclude Include="DxLibSource\DxGraphics.h" />
+    <ClInclude Include="DxLibSource\DxGraphicsFilter.h" />
+    <ClInclude Include="DxLibSource\DxHandle.h" />
+    <ClInclude Include="DxLibSource\DxHeap.h" />
+    <ClInclude Include="DxLibSource\DxInput.h" />
+    <ClInclude Include="DxLibSource\DxInputString.h" />
+    <ClInclude Include="DxLibSource\DxLib.h" />
+    <ClInclude Include="DxLibSource\DxLive2DCubism4.h" />
+    <ClInclude Include="DxLibSource\DxLog.h" />
+    <ClInclude Include="DxLibSource\DxMask.h" />
+    <ClInclude Include="DxLibSource\DxMath.h" />
+    <ClInclude Include="DxLibSource\DxMemImg.h" />
+    <ClInclude Include="DxLibSource\DxMemory.h" />
+    <ClInclude Include="DxLibSource\DxModel.h" />
+    <ClInclude Include="DxLibSource\DxModelFile.h" />
+    <ClInclude Include="DxLibSource\DxModelLoader3.h" />
+    <ClInclude Include="DxLibSource\DxModelLoader4.h" />
+    <ClInclude Include="DxLibSource\DxModelLoaderVMD.h" />
+    <ClInclude Include="DxLibSource\DxModelRead.h" />
+    <ClInclude Include="DxLibSource\DxMovie.h" />
+    <ClInclude Include="DxLibSource\DxNetwork.h" />
+    <ClInclude Include="DxLibSource\DxRingBuffer.h" />
+    <ClInclude Include="DxLibSource\DxSoftImage.h" />
+    <ClInclude Include="DxLibSource\DxSound.h" />
+    <ClInclude Include="DxLibSource\DxSoundConvert.h" />
+    <ClInclude Include="DxLibSource\DxStatic.h" />
+    <ClInclude Include="DxLibSource\DxSystem.h" />
+    <ClInclude Include="DxLibSource\DxThread.h" />
+    <ClInclude Include="DxLibSource\DxUseCLib.h" />
+    <ClInclude Include="DxLibSource\DxUseCLibLive2DCubism4.h" />
+    <ClInclude Include="DxLibSource\DxUseCLibOgg.h" />
+    <ClInclude Include="DxLibSource\Windows\DxBaseFuncWin.h" />
+    <ClInclude Include="DxLibSource\Windows\DxBaseImageWin.h" />
+    <ClInclude Include="DxLibSource\Windows\DxDirectX.h" />
+    <ClInclude Include="DxLibSource\Windows\DxFileWin.h" />
+    <ClInclude Include="DxLibSource\Windows\DxFontWin.h" />
+    <ClInclude Include="DxLibSource\Windows\DxGraphicsAPIWin.h" />
+    <ClInclude Include="DxLibSource\Windows\DxGraphicsD3D11.h" />
+    <ClInclude Include="DxLibSource\Windows\DxGraphicsD3D9.h" />
+    <ClInclude Include="DxLibSource\Windows\DxGraphicsFilterD3D11.h" />
+    <ClInclude Include="DxLibSource\Windows\DxGraphicsFilterD3D9.h" />
+    <ClInclude Include="DxLibSource\Windows\DxGraphicsFilterWin.h" />
+    <ClInclude Include="DxLibSource\Windows\DxGraphicsWin.h" />
+    <ClInclude Include="DxLibSource\Windows\DxGuid.h" />
+    <ClInclude Include="DxLibSource\Windows\DxInputWin.h" />
+    <ClInclude Include="DxLibSource\Windows\DxLive2DCubism4Win.h" />
+    <ClInclude Include="DxLibSource\Windows\DxLogWin.h" />
+    <ClInclude Include="DxLibSource\Windows\DxMaskD3D11.h" />
+    <ClInclude Include="DxLibSource\Windows\DxMaskD3D9.h" />
+    <ClInclude Include="DxLibSource\Windows\DxMaskWin.h" />
+    <ClInclude Include="DxLibSource\Windows\DxMemoryWin.h" />
+    <ClInclude Include="DxLibSource\Windows\DxModelD3D11.h" />
+    <ClInclude Include="DxLibSource\Windows\DxModelD3D9.h" />
+    <ClInclude Include="DxLibSource\Windows\DxModelWin.h" />
+    <ClInclude Include="DxLibSource\Windows\DxMovieWin.h" />
+    <ClInclude Include="DxLibSource\Windows\DxNetworkWin.h" />
+    <ClInclude Include="DxLibSource\Windows\DxShader_Common_D3D11.h" />
+    <ClInclude Include="DxLibSource\Windows\DxShader_DataType_D3D11.h" />
+    <ClInclude Include="DxLibSource\Windows\DxShader_PS_D3D11.h" />
+    <ClInclude Include="DxLibSource\Windows\DxShader_PS_D3D9.h" />
+    <ClInclude Include="DxLibSource\Windows\DxShader_VS_D3D11.h" />
+    <ClInclude Include="DxLibSource\Windows\DxShader_VS_D3D9.h" />
+    <ClInclude Include="DxLibSource\Windows\DxSoundConvertWin.h" />
+    <ClInclude Include="DxLibSource\Windows\DxSoundWin.h" />
+    <ClInclude Include="DxLibSource\Windows\DxSystemWin.h" />
+    <ClInclude Include="DxLibSource\Windows\DxThreadWin.h" />
+    <ClInclude Include="DxLibSource\Windows\DxUseCLibOggD3D11.h" />
+    <ClInclude Include="DxLibSource\Windows\DxUseCLibOggD3D9.h" />
+    <ClInclude Include="DxLibSource\Windows\DxUseCLibOggWin.h" />
+    <ClInclude Include="DxLibSource\Windows\DxUseCStrmBaseFilter.h" />
+    <ClInclude Include="DxLibSource\Windows\DxWinAPI.h" />
+    <ClInclude Include="DxLibSource\Windows\DxWindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="DxLibSource\DxLib.txt" />
+    <Text Include="DxLibSource\DxLog.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
