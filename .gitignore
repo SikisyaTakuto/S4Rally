@@ -77,17 +77,3 @@ DxLibSourceTest_WithUseCLib/*.lib
 DxLibSourceTest_WithUseCLib/*.dll
 DxLibSourceTest_WithUseCLib/*.exe
 DxLibSourceTest_WithUseCLib/*.obj
-
-# FBX SDK関連の不要ファイル
-FBXSDK/
-FBXSDK/lib/
-FBXSDK/include/
-FBXSDK/bin/
-FBXSDK/Debug/
-FBXSDK/Release/
-FBXSDK/*.lib
-FBXSDK/*.dll
-FBXSDK/*.pdb
-FBXSDK/*.exp
-FBXSDK/*.exe
-FBXSDK/*.obj
