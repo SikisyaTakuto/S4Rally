@@ -91,6 +91,3 @@ FBXSDK/*.pdb
 FBXSDK/*.exp
 FBXSDK/*.exe
 FBXSDK/*.obj
-
-# 音楽ファイル（mp3）
-*.mp3
