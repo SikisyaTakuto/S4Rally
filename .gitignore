@@ -31,3 +31,74 @@
 *.pch
 *.res
 *.map
+
+# ビルドフォルダ
+Debug/
+Release/
+x64/Debug/
+x64/Release/
+Win32/Debug/
+Win32/Release/
+
+# CMake関連（必要なら追加）
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+
+# DxLib関連の不要なファイル
+DxLib.lib
+DxLib.x86.lib
+DxLib.x64.lib
+DxGraphics.lib
+DxGraphicsX.lib
+DxUseCLib.lib
+DxShaderBin.lib
+DxShaderCode.lib
+
+# DxLib_VC関連の不要ファイル
+DxLib_VC/
+DxLib_VC/DxLib.lib
+DxLib_VC/DxLib.x86.lib
+DxLib_VC/DxLib.x64.lib
+DxLib_VC/DxGraphics.lib
+DxLib_VC/DxGraphicsX.lib
+DxLib_VC/DxUseCLib.lib
+DxLib_VC/DxShaderBin.lib
+DxLib_VC/DxShaderCode.lib
+DxLib_VC/Debug/
+DxLib_VC/Release/
+
+# DxLibSourceTest_WithUseCLib関連の不要ファイル
+DxLibSourceTest_WithUseCLib/
+DxLibSourceTest_WithUseCLib/Debug/
+DxLibSourceTest_WithUseCLib/Release/
+DxLibSourceTest_WithUseCLib/*.lib
+DxLibSourceTest_WithUseCLib/*.dll
+DxLibSourceTest_WithUseCLib/*.exe
+DxLibSourceTest_WithUseCLib/*.obj
+
+# FBX SDK関連の不要ファイル
+FBXSDK/
+FBXSDK/lib/
+FBXSDK/include/
+FBXSDK/bin/
+FBXSDK/Debug/
+FBXSDK/Release/
+FBXSDK/*.lib
+FBXSDK/*.dll
+FBXSDK/*.pdb
+FBXSDK/*.exp
+FBXSDK/*.exe
+FBXSDK/*.obj
+
+# 音楽ファイル（mp3）
+*.mp3
+
+# フォントファイル（ttf）
+*.ttf
+
+# その他の不要ファイル
+Thumbs.db
+*.bak
+*.tmp
