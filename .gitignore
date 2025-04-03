@@ -22,3 +22,12 @@
 # ビルド出力関連
 *.exe
 *.dll
+*.lib
+*.exp
+*.iobj
+*.ipdb
+*.log
+*.idb
+*.pch
+*.res
+*.map
