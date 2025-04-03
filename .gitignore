@@ -55,18 +55,3 @@ DxGraphicsX.lib
 DxUseCLib.lib
 DxShaderBin.lib
 DxShaderCode.lib
-
-# DxLib_VC関連の不要ファイル
-DxLib_VC/
-DxLib_VC/DxLib.lib
-DxLib_VC/DxLib.x86.lib
-DxLib_VC/DxLib.x64.lib
-DxLib_VC/DxGraphics.lib
-DxLib_VC/DxGraphicsX.lib
-DxLib_VC/DxUseCLib.lib
-DxLib_VC/DxShaderBin.lib
-DxLib_VC/DxShaderCode.lib
-DxLib_VC/Debug/
-DxLib_VC/Release/
-
-# DxLibSourceTest_WithUseCLib関連の不要ファイル
