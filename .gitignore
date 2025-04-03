@@ -94,8 +94,3 @@ FBXSDK/*.obj
 
 # 音楽ファイル（mp3）
 *.mp3
-
-# その他の不要ファイル
-Thumbs.db
-*.bak
-*.tmp
