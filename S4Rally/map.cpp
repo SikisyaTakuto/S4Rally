@@ -11,7 +11,7 @@ VOID MapInit(VOID)
     SetLightDirection(lightDirection);
 
 
-    stage.mapHandle = MV1LoadModel("fbx/Stage/SakuraStage4.fbx");
+    stage.mapHandle = MV1LoadModel("fbx/Stage/sakuraStage2.fbx");
     stage.lockLeft=false;
     stage.lockRight = false;
     MV1SetPosition(stage.mapHandle, VGet(1000.0f,50.0f, 0.0f));
