@@ -243,6 +243,7 @@
     <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxUseCStrmBaseFilter.cpp" />
     <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxWinAPI.cpp" />
     <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxWindow.cpp" />
+    <ClCompile Include="engine.cpp" />
     <ClCompile Include="font.cpp" />
     <ClCompile Include="fps.cpp" />
     <ClCompile Include="game.cpp" />
@@ -253,11 +254,13 @@
     <ClCompile Include="map.cpp" />
     <ClCompile Include="mouse.cpp" />
     <ClCompile Include="music.cpp" />
+    <ClCompile Include="Suspension.cpp" />
     <ClCompile Include="timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="car.h" />
     <ClInclude Include="controller.h" />
+    <ClInclude Include="engine.h" />
     <ClInclude Include="font.h" />
     <ClInclude Include="fps.h" />
     <ClInclude Include="game.h" />
@@ -267,6 +270,7 @@
     <ClInclude Include="map.h" />
     <ClInclude Include="mouse.h" />
     <ClInclude Include="music.h" />
+    <ClInclude Include="Suspension.h" />
     <ClInclude Include="timer.h" />
   </ItemGroup>
   <ItemGroup>

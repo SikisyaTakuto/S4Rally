@@ -293,13 +293,13 @@ VOID CarApplySteering(VOID)
 
     carInfo.steeringAngle = steeringAngleRad * (180.0f / DX_PI); // ラジアンから度に変換
 
-    ////車体が一周したら元に戻す
-    //if (carInfo.steeringAngle <= -360 || carInfo.steeringAngle >= 360)
-    //{
-    //    carInfo.steeringAngle = 0;
-    //    carInfo.minSteeringAngle = -50.0f;
-    //    carInfo.maxSteeringAngle = 50.0f;
-    //}
+    //車体が一周したら元に戻す
+    if (carInfo.steeringAngle <= -360 || carInfo.steeringAngle >= 360)
+    {
+        carInfo.steeringAngle = 0;
+        carInfo.minSteeringAngle = -50.0f;
+        carInfo.maxSteeringAngle = 50.0f;
+    }
 
     // 前輪の角度を更新
     car.frontLeft.rotation.y = carInfo.steeringAngle;
@@ -759,8 +759,8 @@ VOID CarDraw(VOID)
 
 // 🔹 角度の補正（-180～180度範囲に収める）
 float NormalizeAngle(float angle) {
-    //while (angle > 360.0f) angle = 0.0f;
-    //while (angle < -360.0f) angle = 0.0f;
+    while (angle > 360.0f) angle = 0.0f;
+    while (angle < -360.0f) angle = 0.0f;
     return angle;
 }
 

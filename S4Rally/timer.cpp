@@ -13,6 +13,9 @@ const float goalMinZ = -25.0f;
 const float goalMaxZ = 5.0f;
 bool lapPassed = false; // 基準ポジションを通過したかどうかのフラグ
 
+int finishTime = 0; // STATE_FINISHEDに入った時刻
+const int returnToTitleDelay = 10000; // 10秒後（ミリ秒）
+
 // 初期化処理
 VOID TimerInit(VOID)
 {
@@ -31,7 +34,7 @@ VOID TimerUpdate(VOID)
     if (gameState == STATE_COUNTDOWN)
     {
         // 5秒カウントダウン
-        if ((currentTime - startTime) / 1000 >= 5)
+        if ((currentTime - startTime) / 1000 >= 100)
         {
             gameState = STATE_RUNNING;
             lapStartTime = GetNowCount();
@@ -50,12 +53,20 @@ VOID TimerUpdate(VOID)
             {
                 gameState = STATE_FINISHED;
                 ChangeGameScene = ResultScene;
+                finishTime = GetNowCount(); // ← ここで記録
             }
         }
         else if (lapPassed && (carInfo.position.z < goalMinZ || carInfo.position.z > goalMaxZ || carInfo.position.x < goalMinX || carInfo.position.x > goalMaxX))
         {
             // 基準ポジションから十分離れた場合にフラグをリセット
             lapPassed = false;
+        }
+    }
+    else if (gameState == STATE_FINISHED)
+    {
+        if (GetNowCount() - finishTime >= returnToTitleDelay)
+        {
+            ChangeGameScene = TitleScene; // 10秒経ったらタイトルに戻る
         }
     }
 }
@@ -113,6 +124,13 @@ VOID TimerDraw(VOID)
                 640, yOffset, Align_Center, color, fontJiyu25ptFuch.Handle, "ラップタイム %d: %.2f seconds", i + 1, laps[i] / 1000.0f);
             yOffset += 200;
         }
+
+        // タイトルに戻るまでの秒数を表示
+        int remainingTime = (returnToTitleDelay - (GetNowCount() - finishTime)) / 1000;
+        if (remainingTime < 0) remainingTime = 0;
+        DrawFormatStringToHandleAlign(
+            640, 500, Align_Center, GetColor(0, 0, 0), fontJiyu25ptFuch.Handle,
+            "タイトルに戻るまで: %d秒", remainingTime);
     }
 }
 

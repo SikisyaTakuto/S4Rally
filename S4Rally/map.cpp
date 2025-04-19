@@ -7,14 +7,13 @@ Stage stage;
 VOID MapInit(VOID)
 {
     // ライトの初期化
-    VECTOR lightDirection = VGet(0.0f, 10.0f, 10.0f); // ライトの方向
+    VECTOR lightDirection = VGet(0.0f, 100.0f, 100.0f); // ライトの方向
     SetLightDirection(lightDirection);
 
-
-    stage.mapHandle = MV1LoadModel("fbx/Stage/sakuraStage2.fbx");
+    stage.mapHandle = MV1LoadModel("fbx/Stage/TestTrack.fbx");
     stage.lockLeft=false;
     stage.lockRight = false;
-    MV1SetPosition(stage.mapHandle, VGet(1000.0f,50.0f, 0.0f));
+    MV1SetPosition(stage.mapHandle, VGet(100.0f,-50.0f, 0.0f));
 
     // モデル全体のコリジョン情報を構築
     MV1SetupCollInfo(stage.mapHandle, -1, 32, 32, 32);
