@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="camera.cpp" />
     <ClCompile Include="car.cpp" />
     <ClCompile Include="controller.cpp" />
     <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\DxArchive_.cpp" />
@@ -254,10 +255,13 @@
     <ClCompile Include="map.cpp" />
     <ClCompile Include="mouse.cpp" />
     <ClCompile Include="music.cpp" />
-    <ClCompile Include="Suspension.cpp" />
+    <ClCompile Include="suspension.cpp" />
     <ClCompile Include="timer.cpp" />
+    <ClCompile Include="transmission.cpp" />
+    <ClCompile Include="wheelcollider.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="camera.h" />
     <ClInclude Include="car.h" />
     <ClInclude Include="controller.h" />
     <ClInclude Include="engine.h" />
@@ -270,8 +274,10 @@
     <ClInclude Include="map.h" />
     <ClInclude Include="mouse.h" />
     <ClInclude Include="music.h" />
-    <ClInclude Include="Suspension.h" />
+    <ClInclude Include="suspension.h" />
     <ClInclude Include="timer.h" />
+    <ClInclude Include="transmission.h" />
+    <ClInclude Include="wheelcollider.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="game.ico" />
