@@ -1,25 +1,35 @@
 #pragma once
 
-//ヘッダファイル読み込み
 #include "DxLib.h"
-#include "suspension.h"
-#include "wheelcollider.h"
-#include "engine.h"
-#include "car.h"
+#include "controller.h"
+#include "key.h"
 
-// 車両情報構造体
-typedef struct _TransmissionInfo {
+enum TransmissionMode {
+    Manual,
+    Automatic
+};
 
-    int gear;               // 現在のギア (1-5)
+class Transmission {
+public:
+    int gear;
     int maxGear;
-    bool gearChangeLocked;  // ギアチェンジのロック
-    float gearRatios[8];     // ギア比
-    float maxSpeeds[8];      // 各ギアの最大速度 (m/s)
+    bool gearChangeLocked;
+    float gearRatios[8];
+    float maxSpeeds[8];
 
-} TransmissionInfo;
+    TransmissionMode mode;
 
-extern TransmissionInfo transmissionInfo;
+    Transmission();
 
-extern FLOAT  CarCulateRPM(float velocity, int gear);
-extern FLOAT CarCulateEngineForce(int gear);
-extern VOID ChangeGear(VOID);
+    void Update(float velocity, float engineRPM);
+    void ForceShiftUp();
+    int GetGear() const;
+    float GetGearRatio() const;
+
+    float CarculateRPM(float velocity, float wheelRadius) const;
+    float CarculateEngineForce(float engineForce) const;
+
+    void SetGearRatios(const float* ratios, int size);
+    void SetMaxSpeeds(const float* speeds, int size);
+    void ToggleMode(); // モード切り替え
+};

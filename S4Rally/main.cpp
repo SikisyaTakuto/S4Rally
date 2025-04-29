@@ -7,10 +7,10 @@
 #include "music.h"
 #include "graphic.h"
 #include "map.h"
-#include "map.h"
 #include "timer.h"
 #include "controller.h"
 #include "car.h"
+
 
 //プロトタイプ宣言
 VOID GameAndDxLibAllEnd(VOID);//ゲーム終了の後始末
@@ -90,14 +90,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//タイトルシーンを初期化
 	TitleInit();
 
-	//車の初期化
-	CarInit();
-	
-	//マップの初期化
-	MapInit();
-
-	//タイマー（周回）の初期化
-	TimerInit();
+	////タイマー（周回）の初期化
+	//TimerInit();
 
 	//無限ループ（ゲームループ）
 	while (TRUE)

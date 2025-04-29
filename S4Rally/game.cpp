@@ -9,11 +9,16 @@
 #include "music.h"
 #include "graphic.h"
 #include "map.h"
-#include "timer.h"
+//#include "timer.h"
 #include "controller.h"
 #include "car.h"
+#include "camera.h"
+
 
 //グローバル変数
+Car car;
+Camera camera;
+Map map;
 
 //ゲームシーン
 enum GameScene NowGameScene;//現在のゲームシーン
@@ -126,6 +131,10 @@ VOID GameInit(VOID)
 //タイトル初期化
 VOID TitleInit(VOID)
 {
+	car.Init();
+	map.Init();
+	camera.Init();
+
 	//コントローラーのスティックで操作する矩形
 	LeftPlayerPosition = 990.0f;
 	TopPlayerPosition = 540.0f;
@@ -355,6 +364,12 @@ VOID PlayProc(VOID)
 	//音楽を再生
 	PlayMusic(PlayBGM);
 
+	car.Update(fps.Deltatime);
+
+	camera.Update();  // 車を参照渡ししてカメラ更新
+
+	map.Update();
+
 	//シーン切り替え後のフレーム数をカウントアップ
 	GameSceneFrameCount[NowGameScene]++;
 
@@ -365,8 +380,6 @@ VOID PlayDraw(VOID)
 {
 	if (GameDebug == TRUE)
 	{
-		GraphDraw();	//ステージを表示
-
 		ControllerUpdate(); //コントローラーの更新
 
 		//シーン名表示
@@ -375,9 +388,10 @@ VOID PlayDraw(VOID)
 			Color_brack, fontDefault.Handle,
 			"%s%s", GameSceneName[NowGameScene], "描画中");
 
-	    CarUpdate();
+		map.Draw();
+		car.Draw();
 
-		TimerUpdate();
+	/*	TimerUpdate();*/
 	}
 
 	return;
@@ -445,7 +459,7 @@ VOID ResultDraw(VOID)
 			Color_brack, fontDefault.Handle,
 			"%s%s", GameSceneName[NowGameScene], "描画中");
 
-		TimerDraw();
+		//TimerDraw();
 	}
 
 	return;

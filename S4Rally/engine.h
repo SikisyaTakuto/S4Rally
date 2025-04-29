@@ -1,23 +1,29 @@
 #pragma once
 
-//ヘッダファイル読み込み
 #include "DxLib.h"
-#include "car.h"
 
-// 車両情報構造体
-typedef struct _EngineInfo {
-    float engineRPM;                 // エンジン回転数 (初期値 1000 RPM)
-    float idleRPM;                   // アイドリング回転数
-    float maxRPM;                    // 最大回転数
-    float redlineRPM;                // レッドゾーン開始回転数
-    float engineBrakeCoefficient;    // エンジンブレーキの効き
+// 前方宣言（循環依存防止）
+class Transmission;
 
-    int carModelHandle;              // 車体モデルハンドル
+class Engine {
+public:
+    float engineRPM;                 // エンジン回転数
+    float idleRPM;                  // アイドリング回転数
+    float maxRPM;                   // 最大回転数
+    float redlineRPM;              // レッドゾーン開始回転数
+    float engineBrakeCoefficient;  // エンジンブレーキの効き
 
-}EngineInfo;
+    int carModelHandle;            // 車体モデルハンドル
 
-extern EngineInfo engineInfo;
+    Engine();
 
-//外部プロトタイプ宣言
-extern FLOAT CarCulateRPM(float velocity, int gear);    // RPMの計算関数
-extern VOID UpdateEngineRPM(VOID);
+    void Update(float velocity, Transmission& transmission); // RPM更新処理（ギアとの連携）
+
+    // 各種ゲッター
+    float GetRPM() const;
+    float GetBrakeCoefficient() const;
+
+    // セッター（必要に応じて）
+    void SetCarModelHandle(int handle);
+    void SetRPM(float rpm);
+};

@@ -255,6 +255,7 @@
     <ClCompile Include="map.cpp" />
     <ClCompile Include="mouse.cpp" />
     <ClCompile Include="music.cpp" />
+    <ClCompile Include="rigidbody.cpp" />
     <ClCompile Include="suspension.cpp" />
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="transmission.cpp" />
@@ -274,6 +275,7 @@
     <ClInclude Include="map.h" />
     <ClInclude Include="mouse.h" />
     <ClInclude Include="music.h" />
+    <ClInclude Include="rigidbody.h" />
     <ClInclude Include="suspension.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="transmission.h" />

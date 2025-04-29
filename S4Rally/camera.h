@@ -5,5 +5,9 @@
 #include"fps.h"
 #include"car.h"
 
-//外部プロトタイプ宣言
-extern VOID CarSetCamera(VOID);                         // カメラ設定
+class Camera
+{
+public:
+    void Init();
+    void Update();  // Carの参照を渡す
+};

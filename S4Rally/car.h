@@ -1,7 +1,7 @@
-//ホイールコライダーのヘッダファイル
+// Car.h
 #pragma once
 
-//ヘッダファイル読み込み
+// ヘッダファイル読み込み
 #include "DxLib.h"
 #include "fps.h"
 #include "geometory.h"
@@ -13,36 +13,52 @@
 #include "wheelcollider.h"
 #include "engine.h"
 #include "transmission.h"
+#include "rigidbody.h"
+#include <type_traits>
+#include <algorithm>
+#include <vector> 
 
-// 車両情報構造体
-typedef struct _CarInfo {
-    float engineForse;               //エンジンの力 (N)
-    float ballast;                   // バラスト重量
-    float acceleration;              // 加速度
-    float brakeForce;                // ブレーキ力
-    float turboMultiplier;           // ターボ倍率
-    bool turboEnabled;               // ターボの有効化
-    float steeringAngle;             // 操舵角度
-    float maxSteeringAngle;          // 最大操舵角度
-    float minSteeringAngle;          // 最小操舵角度
-    VECTOR position;                 // 車両の位置
-    VECTOR rotation;                 // 車両の回転
+class Car  : public RigidBody, public SuspensionSpring,public Engine,public Transmission
+{
+public:
 
-    float mass = 1.0f;               // 質量
-    float drag = 0.1f;               // 移動時の抵抗]
-    float currentSpeed;              // 現在速度 (m/s)
-    float maxSpeed;                  // 最大速度 (m/s)
+    Car(); // コンストラクタ
+    ~Car(); // デストラクタ
 
-    int carModelHandle;              // 車体モデルハンドル
+    void Init();  // 初期化
+    void Update(float deltaTime); // 更新
+    void Draw();   // 描画
 
-} CarInfo;
+    bool CheckBodyCollision();
 
-extern CarInfo carInfo;
+    bool Raycast(const VECTOR& origin, const VECTOR& direction, float maxDistance, VECTOR& hitPoint, VECTOR& hitNormal);
 
-//外部プロトタイプ宣言
-extern VOID CarInit(VOID);                              // 車両情報の初期化
-extern VOID CarUpdate(VOID);                            // 車両情報の更新
-extern VOID CarDraw(VOID);                              // 描画
-extern FLOAT CarCulateEngineForce(int gear);            // ギアの変更
-extern FLOAT CarApplyAcceleration(float deltaTime);     // アクセルの適用
-extern FLOAT CarApplyBraking(float deltaTime);          // ブレーキの適用
+    VECTOR GetPosition() const { return carBodyPosition; }
+    VECTOR GetRotation() const { return carBodyRotation; }
+
+private:
+
+    enum WheelPosition
+    {
+        FrontLeft,
+        FrontRight,
+        RearLeft,
+        RearRight,
+        WheelNum
+    };
+
+    int carModelHandle;        // 車体モデルハンドル
+    VECTOR carBodyPosition;    // 車体の位置
+    VECTOR carBodyRotation;    // 車体の回転
+
+    int wheelModelHandles[WheelNum];    // ホイールモデルハンドル
+    VECTOR wheelPositions[WheelNum];    // ホイールの位置
+    VECTOR wheelRotations[WheelNum];    // ホイールの回転
+
+    VECTOR wheelOffsets[WheelNum]; // 車体からのオフセット位置（左右前後）
+
+    float motorForce;      // 駆動力
+    float steeringAngle;   // ハンドル角度
+    float accelInput;
+    float steerInput;
+};

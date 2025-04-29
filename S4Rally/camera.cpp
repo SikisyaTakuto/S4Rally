@@ -1,51 +1,33 @@
 #include "camera.h"
 
-// カメラ情報
-VECTOR cameraPosition;
-VECTOR cameraTarget;
-float cameraDistance = 1000.0f; // カメラ距離
-float cameraAngleX = 0.0f;      // カメラの上下角度
-float cameraAngleY = 0.0f;      // カメラの水平角度
-const float cameraZoomSpeed = 50.0f;   // ズーム速度
-const float cameraRotateSpeed = 0.05f; // 回転速度
-
-
-// ?? 角度の補正（-180～180度範囲に収める）
-float NormalizeAngle(float angle) {
-    while (angle > 360.0f) angle = 0.0f;
-    while (angle < -360.0f) angle = 0.0f;
-    return angle;
+void Camera::Init()
+{
+    SetCameraNearFar(1.0f, 10000.0f);
 }
 
-//カメラの設定
-VOID CarSetCamera(VOID) {
-    // カメラのパラメータ
-    const float CAMERA_DISTANCE = 700.0f;   // 車の後方距離
-    const float CAMERA_HEIGHT = 200.0f;     // カメラの高さ
-    const float CAMERA_SMOOTHNESS = 0.1f;   // 追従スムージング
+void Camera::Update()
+{
+    extern Car car; // 外部変数
 
-    float deltaTime = fps.Deltatime;
+    // 車体の位置と回転を取得
+    VECTOR carPos = car.GetPosition();       // 車の位置
+    VECTOR carRot = car.GetRotation();       // 車の回転（Y軸）
 
-    //車の回転角度を取得（正規化）
-    float targetAngleY = NormalizeAngle(-carInfo.steeringAngle * deltaTime);
+    // 後ろ方向（車の後方ベクトル）
+    VECTOR backDir = VGet(-sinf(carRot.y), 0.3f, -cosf(carRot.y));
+    backDir = VNorm(backDir); // 正規化
 
-    //角度補間をスムーズに処理（急激な回転を防ぐ）
-    float angleDiff = NormalizeAngle(targetAngleY - cameraAngleY);
-    cameraAngleY += angleDiff * CAMERA_SMOOTHNESS;
+    float distance = 500.0f;    // 車からの距離
+    float heightOffset = 200.0f; // 高さオフセット
 
-    // 車の向きを表す回転行列
-    MATRIX carMatrix = MGetRotY(cameraAngleY);
+    // カメラ位置を計算（車の後方上空）
+    VECTOR cameraPos = VAdd(carPos, VScale(backDir, distance));
+    cameraPos.y += heightOffset;
 
-    // 車の後方にオフセットを適用
-    VECTOR offset = VTransform(VGet(0.0f, CAMERA_HEIGHT, -CAMERA_DISTANCE), carMatrix);
+    // 注視点は車の少し上
+    VECTOR target = carPos;
+    target.y += 50.0f;
 
-    // 目標カメラ位置を計算
-    VECTOR targetCameraPos = VAdd(carInfo.position, offset);
-
-    // スムーズにカメラを補間
-    cameraPosition = VAdd(VScale(cameraPosition, 1.0f - CAMERA_SMOOTHNESS),
-        VScale(targetCameraPos, CAMERA_SMOOTHNESS));
-
-    // カメラを設定
-    SetCameraPositionAndTarget_UpVecY(cameraPosition, carInfo.position);
+    // カメラ設定
+    SetCameraPositionAndTarget_UpVecY(cameraPos, target);
 }
