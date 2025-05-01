@@ -1,5 +1,5 @@
 ﻿// Car.cpp
-#include "Car.h"
+#include "car.h"
 
 // --- 外部参照
 extern Map map;
@@ -69,14 +69,19 @@ void Car::Init()
 
 void Car::Update(float deltaTime)
 {
+    WheelCollider wheels[WheelNum];  //WheelCollider クラスの配列
+
     // 入力処理
     accelInput = 0.0f;
     steerInput = 0.0f;
+    sideBrakeInput = 0.0f;
 
+    //キー入力取得
     if (CheckHitKey(KEY_INPUT_W)) { accelInput += 1.0f; }
     if (CheckHitKey(KEY_INPUT_S)) { accelInput -= 1.0f; }
     if (CheckHitKey(KEY_INPUT_D)) { steerInput += 1.0f; }
     if (CheckHitKey(KEY_INPUT_A)) { steerInput -= 1.0f; }
+    if (CheckHitKey(KEY_INPUT_SPACE)) { sideBrakeInput = 1.0f; } // サイドブレーキ入力
 
     float velocity = VSize(rigidbody.velocity);
 
@@ -97,14 +102,16 @@ void Car::Update(float deltaTime)
     VECTOR forward = VGet(sinf(carBodyRotation.y), 0, cosf(carBodyRotation.y));
     rigidbody.AddForce(VScale(forward, driveForce * deltaTime));
 
-    // --- 地面の摩擦による減速処理 ---
+    //地面の摩擦による減速処理
     rigidbody.velocity = VScale(rigidbody.velocity, 0.98f); // フリクション
 
-    // --- ステアリング処理（速度に応じて旋回する） ---
+    //ステアリング処理（速度に応じて旋回する）
     steeringAngle = 40.0f * steerInput * DX_PI_F / 180.0f; // ハンドル角（ラジアン）
-    carBodyRotation.y += steeringAngle * deltaTime;
+    const float steeringSpeedThreshold = 2.0f; // 旋回可能な最低速度[m/s]
 
-    // --- 位置更新 ---
+    if (velocity > steeringSpeedThreshold)carBodyRotation.y += steeringAngle * deltaTime;
+
+    //位置更新
     rigidbody.Update(deltaTime);
     carBodyPosition = rigidbody.position;
 
@@ -114,9 +121,7 @@ void Car::Update(float deltaTime)
         // 衝突応答処理（位置を戻すなど）
     }
 
-    WheelCollider wheels[WheelNum];  // ← WheelCollider クラスの配列
-
-    // --- タイヤの位置・回転更新 ---
+    //タイヤの位置・回転更新
     for (int i = 0; i < WheelNum; i++)
     {
         VECTOR rotatedOffset = VTransform(wheelOffsets[i], MGetRotY(carBodyRotation.y));
@@ -124,7 +129,7 @@ void Car::Update(float deltaTime)
 
         wheelRotations[i] = VGet(0, carBodyRotation.y, 0);
 
-        // --- 前輪だけステアリング ---
+        // 前輪だけステアリング
         if (i == FrontLeft || i == FrontRight)
         {
             wheelRotations[i].y += steeringAngle;

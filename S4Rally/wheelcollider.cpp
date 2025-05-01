@@ -59,7 +59,7 @@ bool WheelCollider::GetGroundHit(const VECTOR& wheelPosition, VECTOR& hitPoint, 
 }
 
 // 摩擦力を計算する
-VECTOR WheelCollider::CalculateFrictionForce(const VECTOR& velocity, float suspensionCompression)
+VECTOR WheelCollider::CarCulateFrictionForce(const VECTOR& velocity, float suspensionCompression, float sideBrakeInput)
 {
     VECTOR sideDir = VGet(1, 0, 0);    // 横方向（仮の右方向）
     VECTOR forwardDir = VGet(0, 0, 1); // 前方向（仮の奥方向）
@@ -71,8 +71,11 @@ VECTOR WheelCollider::CalculateFrictionForce(const VECTOR& velocity, float suspe
     // 前後方向の摩擦力
     float forwardForce = -forwardSpeed * forwardFriction.stiffness * suspensionCompression;
 
-    // 横方向の摩擦力
-    float sidewaysForce = -sidewaysSpeed * sidewaysFriction.stiffness * suspensionCompression;
+    // 横方向の摩擦力（サイドブレーキ中は補正）
+    float baseSidewaysStiffness = sidewaysFriction.stiffness;
+    float modifiedSidewaysStiffness = baseSidewaysStiffness + sideBrakeInput * 5.0f; // 例：5倍硬くする
+
+    float sidewaysForce = -sidewaysSpeed * modifiedSidewaysStiffness * suspensionCompression;
 
     // 摩擦力ベクトルを合成
     VECTOR friction = VAdd(VScale(forwardDir, forwardForce), VScale(sideDir, sidewaysForce));

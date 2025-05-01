@@ -25,12 +25,12 @@ void RigidBody::Update(float deltaTime)
 
     VECTOR totalForce = force;
 
-    // 重力をかける
-    if (isGravity)
-    {
-        VECTOR gravity = VGet(0, -9.81f * mass, 0); // 重力加速度
-        totalForce = VAdd(totalForce, gravity);
-    }
+    //// 重力をかける
+    //if (isGravity)
+    //{
+    //    VECTOR gravity = VGet(0, -9.81f * mass, 0); // 重力加速度
+    //    totalForce = VAdd(totalForce, gravity);
+    //}
 
     // 加速度 = 力 / 質量
     VECTOR acceleration = VScale(totalForce, 1.0f / mass);

@@ -47,7 +47,7 @@ public:
     bool GetGroundHit(const VECTOR& wheelPosition, VECTOR& hitPoint, VECTOR& hitNormal, float& suspensionCompression);
 
     // 摩擦力計算
-    VECTOR CalculateFrictionForce(const VECTOR& velocity, float suspensionCompression);
+    VECTOR CarCulateFrictionForce(const VECTOR& velocity, float suspensionCompression, float sideBrakeInput);
 
 private:
     // 地面との判定(簡易版: 地面Y=0固定）

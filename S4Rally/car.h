@@ -61,4 +61,5 @@ private:
     float steeringAngle;   // ハンドル角度
     float accelInput;
     float steerInput;
+    float sideBrakeInput;  // サイドブレーキ入力（押してると1.0、押してなければ0.0）
 };
