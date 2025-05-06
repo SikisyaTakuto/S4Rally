@@ -244,7 +244,6 @@
     <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxUseCStrmBaseFilter.cpp" />
     <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxWinAPI.cpp" />
     <ClCompile Include="DxLibSourceTest_WithUseCLib\DxLibSourceTest_WithUseCLib\DxLibSource\Windows\DxWindow.cpp" />
-    <ClCompile Include="engine.cpp" />
     <ClCompile Include="font.cpp" />
     <ClCompile Include="fps.cpp" />
     <ClCompile Include="game.cpp" />
@@ -258,14 +257,12 @@
     <ClCompile Include="rigidbody.cpp" />
     <ClCompile Include="suspension.cpp" />
     <ClCompile Include="timer.cpp" />
-    <ClCompile Include="transmission.cpp" />
     <ClCompile Include="wheelcollider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
     <ClInclude Include="car.h" />
     <ClInclude Include="controller.h" />
-    <ClInclude Include="engine.h" />
     <ClInclude Include="font.h" />
     <ClInclude Include="fps.h" />
     <ClInclude Include="game.h" />
@@ -278,7 +275,6 @@
     <ClInclude Include="rigidbody.h" />
     <ClInclude Include="suspension.h" />
     <ClInclude Include="timer.h" />
-    <ClInclude Include="transmission.h" />
     <ClInclude Include="wheelcollider.h" />
   </ItemGroup>
   <ItemGroup>

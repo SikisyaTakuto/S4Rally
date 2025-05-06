@@ -18,12 +18,16 @@ Map::~Map()
 // マップ初期化
 void Map::Init()
 {
-    // ライトの設定
-    VECTOR lightDirection = VGet(0.0f, 100.0f, 100.0f);
+    // Map.cpp → Init() にて
+    VECTOR lightDirection = VGet(1000.0f, 10000.0f, 0.0f);
     SetLightDirection(lightDirection);
+    SetLightEnable(TRUE); // ライトを有効化（念のため）
+    SetLightAmbColor(GetColorF(0.3f, 0.3f, 0.3f, 1.0f)); // 環境光の色をちょっと弱め
 
     // モデル読み込み
-    modelHandle = MV1LoadModel("fbx/Stage/TestTrack.fbx"); // ←パスはあなたのモデルデータに合わせてね！
+    modelHandle = MV1LoadModel("fbx/Stage/ContainerTerminal.fbx"); // ←パスはあなたのモデルデータに合わせてね！
+
+    MV1SetPosition(modelHandle, VGet(0.0f,50.0f, 0.0f));
 }
 
 // マップ更新（今回は何もなし）
@@ -69,33 +73,4 @@ void Map::Draw()
 
         SetUseZBufferFlag(FALSE);
     }
-}
-
-bool Map::Raycast(const VECTOR& origin, const VECTOR& direction, float maxDistance, VECTOR& hitPoint, VECTOR& hitNormal) {
-    // 仮実装：地面Y=0 代わりにMapの表面でヒットしたことにする
-    // 本来はMeshレイキャストするけど、簡単化
-
-  // 坂道：Z軸方向に高さが上がるY=Z*0.5の坂
-    if (direction.y < 0.0f) {
-        float expectedY = origin.z * 0.5f;
-        float distanceToGround = (origin.y - expectedY) / (-direction.y);
-        if (distanceToGround >= 0.0f && distanceToGround <= maxDistance) {
-            hitPoint = VAdd(origin, VScale(direction, distanceToGround));
-            hitPoint.y = hitPoint.z * 0.5f;
-            hitNormal = VNorm(VGet(0.0f, 1.0f, -0.5f)); // 坂の法線
-            return true;
-        }
-    }
-
-    // 壁（Z=30の位置にある）
-    if (fabs(direction.z) > 0.001f) {
-        float t = (30.0f - origin.z) / direction.z;
-        if (t >= 0.0f && t <= maxDistance) {
-            hitPoint = VAdd(origin, VScale(direction, t));
-            hitNormal = VGet(0.0f, 0.0f, -1.0f); // 壁の法線
-            return true;
-        }
-    }
-
-    return false;
 }

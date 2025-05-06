@@ -16,6 +16,6 @@ public:
     ~SuspensionSpring();
 
     // サスペンションの力を計算する
-    float CalculateForce(float deltaTime, float newLength);
+    float CarCulateForce(float deltaTime, float newLength);
 
 };

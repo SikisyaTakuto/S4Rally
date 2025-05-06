@@ -3,7 +3,7 @@
 
 // コンストラクタ（デフォルト値を設定）
 WheelCollider::WheelCollider()
-    : mass(20.0f), radius(0.35f), wheelDampingRate(1.0f), suspensionDistance(0.2f), forceAppPointDistance(0.0f), center({ 0, 0, 0 })
+    : mass(20.0f), radius(35.0f), wheelDampingRate(1.0f), suspensionDistance(0.2f), forceAppPointDistance(0.0f), center({ 0, 0, 0 })
 {
     // 前後方向の摩擦設定（仮）
     forwardFriction = { 1.0f, 1.0f, 2.0f, 0.5f, 1.0f };
@@ -29,57 +29,80 @@ bool WheelCollider::Raycast(const VECTOR& origin, const VECTOR& direction, float
     MV1_COLL_RESULT_POLY_DIM result = MV1CollCheck_Sphere(map.modelHandle, -1, sphereCenter, radius);
 
     if (result.HitNum > 0) {
-        //// 最も近いヒットを取得
-        //MV1_COLL_RESULT_POLY hit = MV1CollResultPolyDimGetHitPolyDim(&result, 0);
-        //hitPoint = hit.Position[0]; // 三角形の1頂点（近似）
-        //hitNormal = hit.Normal;
-        //return true;
+
+        return true; // 当たっている
     }
 
     return false;
 }
 
-// サスペンションの沈み込み計算と地面ヒット情報取得
-bool WheelCollider::GetGroundHit(const VECTOR& wheelPosition, VECTOR& hitPoint, VECTOR& hitNormal, float& suspensionCompression)
+bool WheelCollider::GetGroundHit(const VECTOR& wheelPos, VECTOR& hitPos, VECTOR& hitNormal, float& compression)
 {
-    VECTOR rayOrigin = VAdd(wheelPosition, center);  // ホイールの中心位置
-    VECTOR rayDirection = VGet(0, -1, 0);            // 真下方向にレイ発射
+    extern Map map;
 
-    if (Raycast(rayOrigin, rayDirection, suspensionDistance + radius, hitPoint, hitNormal)) {
-        // ホイール中心から地面までの距離を計算
-        float distanceToGround = VSize(VSub(rayOrigin, hitPoint));
+    MV1_COLL_RESULT_POLY_DIM hitResult;
 
-        // サスペンションの圧縮率を計算（0～1）
-        suspensionCompression = 1.0f - (distanceToGround - radius) / suspensionDistance;
-        suspensionCompression = Clamp(suspensionCompression, 0.0f, 1.0f);
+    // 車輪の半径（適当に設定）
+    const float wheelRadius = 18.0f;
+
+    // マップのモデルハンドルを取得
+    int mapHandle = map.modelHandle;
+
+    // 接触判定（球体とマップ）
+    hitResult = MV1CollCheck_Sphere(mapHandle, -1, wheelPos, wheelRadius);
+
+    if (hitResult.HitNum > 0) {
+        // 最初にヒットしたポリゴンの情報を取得
+        hitPos = hitResult.Dim[0].Position[0];  // 0番目の頂点
+        hitNormal = hitResult.Dim[0].Normal;
+
+        // 圧縮率（サスペンションの沈み具合）を計算
+        float distance = wheelPos.y - hitPos.y;
+        compression = distance / wheelRadius;
         return true;
     }
-    suspensionCompression = 0.0f;
+
+    // 接地してない場合
+    compression = 1.0f;
     return false;
 }
 
 // 摩擦力を計算する
 VECTOR WheelCollider::CarCulateFrictionForce(const VECTOR& velocity, float suspensionCompression, float sideBrakeInput)
 {
-    VECTOR sideDir = VGet(1, 0, 0);    // 横方向（仮の右方向）
-    VECTOR forwardDir = VGet(0, 0, 1); // 前方向（仮の奥方向）
+    extern Car car;
 
-    // 速度を前後・左右成分に分解
-    float forwardSpeed = VDot(velocity, forwardDir);
-    float sidewaysSpeed = VDot(velocity, sideDir);
+    RigidBody rigidBody;
 
-    // 前後方向の摩擦力
-    float forwardForce = -forwardSpeed * forwardFriction.stiffness * suspensionCompression;
+    VECTOR frictionForce = VGet(0, 0, 0);
 
-    // 横方向の摩擦力（サイドブレーキ中は補正）
-    float baseSidewaysStiffness = sidewaysFriction.stiffness;
-    float modifiedSidewaysStiffness = baseSidewaysStiffness + sideBrakeInput * 5.0f; // 例：5倍硬くする
+    // 地面に接地していなければ摩擦力なし
+    if (rigidBody.isGrounded) {
+        return frictionForce;
+    }
 
-    float sidewaysForce = -sidewaysSpeed * modifiedSidewaysStiffness * suspensionCompression;
+    // --- 速度の成分分解（前後方向、左右方向）
+    VECTOR forward = VNorm(VGet(sinf(car.carBodyRotation.y), 0.0f, cosf(car.carBodyRotation.y)));  // 車の前方向
+    VECTOR right = VCross(VGet(0, 1, 0), forward); // 車の右方向
 
-    // 摩擦力ベクトルを合成
-    VECTOR friction = VAdd(VScale(forwardDir, forwardForce), VScale(sideDir, sidewaysForce));
-    return friction;
+    float forwardSpeed = VDot(velocity, forward);  // 前後成分
+    float sidewaysSpeed = VDot(velocity, right);   // 横成分
+
+    // --- 縦方向（前後方向）摩擦（エンジンブレーキ的）
+    const float rollingResistanceCoef = 0.015f; // 転がり抵抗係数
+    VECTOR rollingResistance = VScale(forward, -forwardSpeed * rollingResistanceCoef);
+
+    // --- 横方向摩擦（サイドブレーキ時に大きくする）
+    float lateralFrictionCoef = 0.5f; // 通常時の横摩擦係数
+    if (sideBrakeInput > 0.5f) {
+        lateralFrictionCoef = 2.0f; // サイドブレーキ中は横滑り強める
+    }
+    VECTOR lateralFriction = VScale(right, -sidewaysSpeed * lateralFrictionCoef);
+
+    // --- 合算
+    frictionForce = VAdd(rollingResistance, lateralFriction);
+
+    return frictionForce;
 }
 
 // Clamp関数：値を[min, max]の範囲に収める
@@ -87,4 +110,21 @@ float WheelCollider::Clamp(float value, float min, float max) {
     if (value < min) return min;
     if (value > max) return max;
     return value;
+}
+
+//タイヤ位置に球を描画する関数を追加
+void WheelCollider::Draw(const VECTOR& wheelPosition)
+{
+    // タイヤの中心＋オフセット
+    VECTOR spherePos = VAdd(wheelPosition, center);
+
+    // 線分のみで球を描く（塗りつぶしなし）
+    DrawSphere3D(
+        spherePos,       // 球の中心座標
+        radius,          // 球の半径
+        10,              // 緯線数（細かさ）
+        10,              // 経線数（細かさ）
+        GetColor(255, 0, 0),  // 色（赤色）
+        false            // 塗りつぶさない
+    );
 }

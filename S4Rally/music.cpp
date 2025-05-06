@@ -25,11 +25,7 @@ BOOL Music_Init(VOID)
 
 	//SE
 	ButtonClickSE = LoadMusic(MusicPathButtonClickSE, VolumeSE, DX_PLAYTYPE_BACK); if (ButtonClickSE.Handle == -1) { return FALSE; }
-	/*
-	JumpSE = LoadMusic(MusicPathJumpSE, VolumeSE, DX_PLAYTYPE_BACK); if (JumpSE.Handle == -1) { return FALSE; }
-	ExplSE = LoadMusic(MusicPathExplSE, VolumeSE, DX_PLAYTYPE_BACK); if (JumpSE.Handle == -1) { return FALSE; }
-	AvoidSE = LoadMusic(MusicPathAvoidSE, VolumeSE, DX_PLAYTYPE_BACK); if (JumpSE.Handle == -1) { return FALSE; }
-	*/
+
 	return TRUE;
 }
 
@@ -40,9 +36,6 @@ VOID Music_End(VOID)
 	DeleteMusic(PlayBGM);
 	DeleteMusic(ResultBGM);
 	DeleteMusic(ButtonClickSE);
-	//DeleteMusic(JumpSE);
-	//DeleteMusic(ExplSE);
-	//DeleteMusic(AvoidSE);
 
 	return;
 }

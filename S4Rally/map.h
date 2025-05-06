@@ -23,8 +23,4 @@ public:
     void Init();    // マップ初期化
     void Update();  // マップ更新（必要なら）
     void Draw();    // マップ描画（モデル＋ライン）
-
-    // レイキャストヒットを判定する（超シンプルな球形で）
-    bool Raycast(const VECTOR& origin, const VECTOR& direction, float maxDistance, VECTOR& hitPoint, VECTOR& hitNormal);
-
 };

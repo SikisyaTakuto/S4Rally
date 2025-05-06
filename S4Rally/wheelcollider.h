@@ -5,6 +5,7 @@
 #include "DxLib.h"
 #include "map.h"
 #include "car.h"
+#include "rigidbody.h"
 
 class WheelCollider {
 public:
@@ -38,7 +39,6 @@ public:
         float stiffness;       //Extremum Value と Asymptote Value に対する乗数 (デフォルトは 1)。 0に設定すると、ホイールからのすべての摩擦が完全に無効
     }sidewaysFriction;
 
-
     // コンストラクタ・デストラクタ 
     WheelCollider();   // 初期化
     ~WheelCollider();  // 終了処理（今回は特にリソース開放は不要）
@@ -48,6 +48,9 @@ public:
 
     // 摩擦力計算
     VECTOR CarCulateFrictionForce(const VECTOR& velocity, float suspensionCompression, float sideBrakeInput);
+
+    //当たり判定の球体を表示
+    void Draw(const VECTOR& wheelPosition);
 
 private:
     // 地面との判定(簡易版: 地面Y=0固定）

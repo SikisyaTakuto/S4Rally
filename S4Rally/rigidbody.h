@@ -4,6 +4,7 @@
 //ヘッダファイル読み込み
 #include "DxLib.h"
 #include "fps.h"
+#include "wheelcollider.h"
 
 class RigidBody
 {
@@ -13,6 +14,7 @@ class RigidBody
         float drag = 0.0f;           // 空気抵抗
         float angularDrag = 0.05f;   // 回転抵抗（今回は未実装）
         bool isGravity = true;       // 重力を受けるか
+        bool isGrounded = false;     // 地面に接触しているか
 
         // 状態
         VECTOR position = { 0, 0, 0 }; // 現在の位置

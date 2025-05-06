@@ -11,16 +11,18 @@
 #include "camera.h"
 #include "suspension.h"
 #include "wheelcollider.h"
-#include "engine.h"
-#include "transmission.h"
 #include "rigidbody.h"
 #include <type_traits>
 #include <algorithm>
 #include <vector> 
 
-class Car  : public RigidBody, public SuspensionSpring,public Engine,public Transmission
+class Car
 {
 public:
+
+    int carModelHandle;        // 車体モデルハンドル
+    VECTOR carBodyPosition;    // 車体の位置
+    VECTOR carBodyRotation;    // 車体の回転
 
     Car(); // コンストラクタ
     ~Car(); // デストラクタ
@@ -47,10 +49,6 @@ private:
         WheelNum
     };
 
-    int carModelHandle;        // 車体モデルハンドル
-    VECTOR carBodyPosition;    // 車体の位置
-    VECTOR carBodyRotation;    // 車体の回転
-
     int wheelModelHandles[WheelNum];    // ホイールモデルハンドル
     VECTOR wheelPositions[WheelNum];    // ホイールの位置
     VECTOR wheelRotations[WheelNum];    // ホイールの回転
@@ -62,4 +60,47 @@ private:
     float accelInput;
     float steerInput;
     float sideBrakeInput;  // サイドブレーキ入力（押してると1.0、押してなければ0.0）
+
+    VECTOR frontStart;
+    VECTOR frontEnd ;
+
+    VECTOR backStart;
+    VECTOR backEnd;
+
+    VECTOR leftStart;
+    VECTOR leftEnd;
+
+    VECTOR rightStart;
+    VECTOR rightEnd;
+
+    bool hitFront;
+    bool hitBack;
+    bool hitLeft;
+    bool hitRight;
+
+
+
+    VECTOR frontStartDeceleration;
+    VECTOR frontEndDeceleration;
+
+    VECTOR backStartDeceleration;
+    VECTOR backEndDeceleration;
+
+    VECTOR leftStartDeceleration;
+    VECTOR leftEndDeceleration;
+
+    VECTOR rightStartDeceleration;
+    VECTOR rightEndDeceleration;
+
+    bool hitFrontDeceleration;
+    bool hitBackDeceleration;
+    bool hitLeftDeceleration;
+    bool hitRightDeceleration;
+
+
+
+    VECTOR boxVertices[8]; // 車体Boxの頂点リスト
+    float boxHalfWidth = 100.0f;  // 左右方向 半幅
+    float boxHalfLength = 160.0f; // 前後方向 半長さ
+    float boxHeight = 50.0f;   // 高さ
 };

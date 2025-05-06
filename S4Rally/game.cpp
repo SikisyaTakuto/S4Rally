@@ -9,10 +9,10 @@
 #include "music.h"
 #include "graphic.h"
 #include "map.h"
-//#include "timer.h"
 #include "controller.h"
 #include "car.h"
 #include "camera.h"
+#include "timer.h"
 
 
 //グローバル変数
@@ -63,6 +63,8 @@ float BottomPlayerPosition = 565.0f;
 float StickSensitivity = 10.0f; // スティックの感度設定（値を調整して動作速度を制御）
 
 float mainSelect=0;
+
+int backPanelImage = LoadGraph(".\\graphic\\BackPanelImage.png");
 
 //関数
 
@@ -131,6 +133,8 @@ VOID GameInit(VOID)
 //タイトル初期化
 VOID TitleInit(VOID)
 {
+	//タイマー（周回）の初期化
+	TimerInit();
 	car.Init();
 	map.Init();
 	camera.Init();
@@ -216,6 +220,7 @@ VOID TitleDraw(VOID)
 	{
 		//適当に描画
 		DrawBox(0, 0, GameWidth, GameHeight, GetColor(178, 216, 255), TRUE);
+		DrawGraphic(&TitleBackImage);
 
 		//シーン名表示
 		DrawFormatStringToHandle(
@@ -228,7 +233,7 @@ VOID TitleDraw(VOID)
 			if (CollRectToRect(TimeAttackRect, controllerPointRect))
 			{
 				DrawRect(TimeAttackRect, Color_tomato, TRUE);
-				if (GetButtonDown(BUTTON_A)||KeyDown(KEY_INPUT_SPACE))
+				if (GetButtonDown(BUTTON_A)||KeyDown(KEY_INPUT_RETURN))
 				{
 					//効果音を再生
 					PlayMusic(ButtonClickSE);
@@ -250,7 +255,7 @@ VOID TitleDraw(VOID)
 			if (CollRectToRect(RuleRunRect, controllerPointRect))
 			{
 				DrawRect(RuleRunRect, Color_tomato, TRUE);
-				if (GetButtonDown(BUTTON_A) || KeyDown(KEY_INPUT_SPACE))
+				if (GetButtonDown(BUTTON_A) || KeyDown(KEY_INPUT_RETURN))
 				{
 					//効果音を再生
 					PlayMusic(ButtonClickSE);
@@ -268,8 +273,6 @@ VOID TitleDraw(VOID)
 			else {
 				DrawRect(RuleRunRect, Color_white, TRUE);
 			}
-
-			DrawRect(LockRunRect, Color_white, TRUE);
 		}
 		{
 			if (CheckHitKey(KEY_INPUT_A) || axisX <= -0.5f) {
@@ -370,6 +373,8 @@ VOID PlayProc(VOID)
 
 	map.Update();
 
+	TimerUpdate();
+
 	//シーン切り替え後のフレーム数をカウントアップ
 	GameSceneFrameCount[NowGameScene]++;
 
@@ -390,8 +395,7 @@ VOID PlayDraw(VOID)
 
 		map.Draw();
 		car.Draw();
-
-	/*	TimerUpdate();*/
+		TimerDraw();
 	}
 
 	return;
@@ -430,9 +434,9 @@ VOID ResultProc(VOID)
 {
 	// シーン切り替え後のフレーム数をカウントアップ
 	GameSceneFrameCount[NowGameScene]++;
-
-	// 7秒経過後、タイトルシーンに戻る
-	if (GameSceneFrameCount[NowGameScene] >= 420)
+	 
+	// 10秒経過後、タイトルシーンに戻る
+	if (GameSceneFrameCount[NowGameScene] >= 600)
 	{
 		//効果音を再生
 		PlayMusic(ButtonClickSE);
@@ -452,14 +456,15 @@ VOID ResultDraw(VOID)
 	{
 		//適当に描画
 		DrawBox(0, 0, GameWidth, GameHeight, GetColor(255, 230, 179), TRUE);
+		DrawGraphic(&TitleBackImage);
+
+		TimerDraw();
 
 		//シーン名表示
 		DrawFormatStringToHandle(
 			GameWidth - 200, 0,
 			Color_brack, fontDefault.Handle,
 			"%s%s", GameSceneName[NowGameScene], "描画中");
-
-		//TimerDraw();
 	}
 
 	return;
@@ -468,6 +473,7 @@ VOID ResultDraw(VOID)
 //ルール・操作説明初期化
 VOID RuleInit(VOID)
 {
+	backPanelImage = LoadGraph(".\\graphic\\BackPanelImage.png");
 
 	if (GameDebug == TRUE)
 	{
@@ -515,12 +521,20 @@ VOID RuleDraw(VOID)
 		//適当に描画
 		DrawBox(0, 0, GameWidth, GameHeight, GetColor(255, 230, 179), TRUE);
 
-		DrawRect(backPanelRect, Color_white, TRUE);
+		// backPanelRectに合わせて画像を表示
+		DrawExtendGraph(
+			backPanelRect.left,
+			backPanelRect.top,
+			backPanelRect.right,
+			backPanelRect.bottom,
+			backPanelImage,
+			false
+		);
 
 		if (CollRectToRect(backSceneRect, controllerPointRect))
 		{
 			DrawRect(backSceneRect, Color_tomato, TRUE);
-			if (GetButtonDown(BUTTON_A) || KeyDown(KEY_INPUT_SPACE))
+			if (GetButtonDown(BUTTON_A) || KeyDown(KEY_INPUT_RETURN))
 			{
 				//効果音を再生
 				PlayMusic(ButtonClickSE);

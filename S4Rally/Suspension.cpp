@@ -17,7 +17,7 @@ SuspensionSpring::~SuspensionSpring() {}
 // サスペンションに働く力を計算する関数
 // deltaTime: 前回の更新からの経過時間（秒）
 // newLength: 新しいスプリングの長さ（m）
-float SuspensionSpring::CalculateForce(float deltaTime, float newLength) {
+float SuspensionSpring::CarCulateForce(float deltaTime, float newLength) {
     // 目標位置からの変位を計算
     float displacement = restLength * targetPosition - newLength;
 

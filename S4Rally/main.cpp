@@ -90,8 +90,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//タイトルシーンを初期化
 	TitleInit();
 
-	////タイマー（周回）の初期化
-	//TimerInit();
+	//タイマー（周回）の初期化
+	TimerInit();
 
 	//無限ループ（ゲームループ）
 	while (TRUE)
