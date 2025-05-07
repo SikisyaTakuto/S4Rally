@@ -16,13 +16,13 @@
 
 
 //グローバル変数
-Car car;
-Camera camera;
-Map map;
+Car car;         // 車オブジェクト
+Camera camera;   // カメラオブジェクト
+Map map;         // マップオブジェクト
 
 //ゲームシーン
-enum GameScene NowGameScene;//現在のゲームシーン
-enum GameScene ChangeGameScene;//切り替わるゲームシーン
+enum GameScene NowGameScene;    //現在のゲームシーン
+enum GameScene ChangeGameScene; //切り替わるゲームシーン
 
 //ゲーム画面関係
 RECT GameWindow;//ゲーム画面の矩形
@@ -55,15 +55,19 @@ RECT LockRunRect;    //ロック
 RECT backSceneRect;	 //シーンに戻る
 RECT backPanelRect;  //バックパネル
 
+// スティック操作時のカーソル位置
 float LeftPlayerPosition = 990.0f;
 float TopPlayerPosition = 540.0f;
 float RightPlayerPosition = 1015.0f;
 float BottomPlayerPosition = 565.0f;
 
-float StickSensitivity = 10.0f; // スティックの感度設定（値を調整して動作速度を制御）
+// スティックの感度設定（値を調整して動作速度を制御）
+float StickSensitivity = 10.0f; 
 
+// メニュー選択中のメインインデックス
 float mainSelect=0;
 
+// バックパネルの画像
 int backPanelImage = LoadGraph(".\\graphic\\BackPanelImage.png");
 
 //関数
@@ -274,6 +278,8 @@ VOID TitleDraw(VOID)
 				DrawRect(RuleRunRect, Color_white, TRUE);
 			}
 		}
+
+		// スティックでカーソル移動
 		{
 			if (CheckHitKey(KEY_INPUT_A) || axisX <= -0.5f) {
 				LeftPlayerPosition -= StickSensitivity;
