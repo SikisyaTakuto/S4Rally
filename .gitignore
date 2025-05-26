@@ -1,18 +1,29 @@
-# まずすべてを無視
+# ---------------------
+# すべてのファイルを無視
+# ---------------------
 *
 
-# .gitignore 自体は無視しない
+# ---------------------
+# 必要なファイル・フォルダを例外として指定
+# ---------------------
+
+# .gitignore ファイル自体は無視しない
 !.gitignore
 
-# cpp と h ファイルは追跡対象とする
+# C++ ヘッダおよびソースファイルは追跡対象
 !*.cpp
 !*.h
 
-# フォルダ構成維持のためにディレクトリは許可（中身は引き続き無視）
+# フォルダ構造は追跡（中身のファイルは上記の例外指定が必要）
 !*/
 
-# Visual Studio関連ファイルを明示的に無視（保険として）
-.vscode/
+# ---------------------
+# Visual Studio 関連ファイルの明示的な除外
+# ---------------------
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
 *.suo
 *.ncb
 *.sdf
@@ -25,14 +36,15 @@
 *.tlog
 *.log
 *.user
-*.filters
 *.VC.db
 *.opendb
 *.VC.VC.opendb
 *.db-shm
 *.db-wal
 
-# ビルド出力関連
+# ---------------------
+# ビルド出力・一時ファイル
+# ---------------------
 *.exe
 *.dll
 *.lib
@@ -44,7 +56,9 @@
 *.res
 *.map
 
+# ---------------------
 # ビルドフォルダ
+# ---------------------
 Debug/
 Release/
 x64/Debug/
@@ -52,57 +66,60 @@ x64/Release/
 Win32/Debug/
 Win32/Release/
 
-# CMake関連（必要なら追加）
+# ---------------------
+# CMake 関連（使用している場合）
+# ---------------------
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles/
 cmake_install.cmake
 
-# DxLib関連の不要なファイル
-DxLib.lib
-DxLib.x86.lib
-DxLib.x64.lib
-DxGraphics.lib
-DxGraphicsX.lib
+# ---------------------
+# DxLib 関連の一時ファイル・ビルド出力
+# ---------------------
+DxLib*.lib
+DxGraphics*.lib
 DxUseCLib.lib
 DxShaderBin.lib
 DxShaderCode.lib
 
 DxLib_VC/
-DxLib_VC/Debug/
-DxLib_VC/Release/
-DxLib_VC/*.lib
-DxLib_VC/*.dll
-DxLib_VC/*.exe
-DxLib_VC/*.obj
+DxLib_VC/**/*.lib
+DxLib_VC/**/*.dll
+DxLib_VC/**/*.exe
+DxLib_VC/**/*.obj
+DxLib_VC/**/Debug/
+DxLib_VC/**/Release/
 
 DxLibSourceTest_WithUseCLib/
-DxLibSourceTest_WithUseCLib/Debug/
-DxLibSourceTest_WithUseCLib/Release/
-DxLibSourceTest_WithUseCLib/*.lib
-DxLibSourceTest_WithUseCLib/*.dll
-DxLibSourceTest_WithUseCLib/*.exe
-DxLibSourceTest_WithUseCLib/*.obj
+DxLibSourceTest_WithUseCLib/**/*.lib
+DxLibSourceTest_WithUseCLib/**/*.dll
+DxLibSourceTest_WithUseCLib/**/*.exe
+DxLibSourceTest_WithUseCLib/**/*.obj
+DxLibSourceTest_WithUseCLib/**/Debug/
+DxLibSourceTest_WithUseCLib/**/Release/
 
-# FBX SDK関連の不要ファイル
+# ---------------------
+# FBX SDK 関連
+# ---------------------
 FBXSDK/
-FBXSDK/lib/
-FBXSDK/include/
-FBXSDK/bin/
-FBXSDK/Debug/
-FBXSDK/Release/
-FBXSDK/*.lib
-FBXSDK/*.dll
-FBXSDK/*.pdb
-FBXSDK/*.exp
-FBXSDK/*.exe
-FBXSDK/*.obj
+FBXSDK/**/lib/
+FBXSDK/**/include/
+FBXSDK/**/bin/
+FBXSDK/**/Debug/
+FBXSDK/**/Release/
+FBXSDK/**/*.lib
+FBXSDK/**/*.dll
+FBXSDK/**/*.pdb
+FBXSDK/**/*.exp
+FBXSDK/**/*.exe
+FBXSDK/**/*.obj
 
-# 音楽・フォントファイル
+# ---------------------
+# その他の不要ファイル
+# ---------------------
 *.mp3
 *.ttf
-
-# その他
 Thumbs.db
 *.bak
 *.tmp

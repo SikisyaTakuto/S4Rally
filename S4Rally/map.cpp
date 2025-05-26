@@ -18,21 +18,7 @@ Map::~Map()
 // マップ初期化
 void Map::Init()
 {
-    // ライトの方向を設定（やや斜め上からの光）
-    VECTOR lightDir = VNorm(VGet(-1.0f, -1.0f, -1.0f));
-    ChangeLightTypeDir(lightDir);
-
-    // ライトの有効化（デフォルトでは無効のことがある）
-    SetUseLighting(TRUE);
-
-    // アンビエントライトをやや暗めに設定（影の表現）
-    SetLightAmbColor(GetColorF(0.3f, 0.3f, 0.3f,0.0f));
-
-    // ディフューズライトカラー（拡散光）
-    SetLightDifColor(GetColorF(1.0f, 1.0f, 1.0f, 0.0f));
-
-    // スペキュラ（反射光）設定（必要に応じて）
-    SetLightSpcColor(GetColorF(0.5f, 0.5f, 0.5f, 0.0f));
+    ChangeLightTypeDir(VGet(-10.0f, 10.0f, -10.0f));
 
     // モデル読み込み
     modelHandle = MV1LoadModel("fbx/Stage/ContainerTerminal.fbx");

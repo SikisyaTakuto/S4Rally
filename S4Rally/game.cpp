@@ -166,36 +166,6 @@ VOID TitleProc(VOID)
 
 	//音楽を再生
 	PlayMusic(TitleBGM);
-	
-	//フェードインして再生
-	//FadeInPlayMusic(&TitleBGM, 5000);	//5秒かけてフェードイン
-
-	//フェードアウトして再生
-	//FadeOutPlayMusic(&TitleBGM, 5000);	//5秒かけてフェードイン
-
-	////シーン切り替え
-	//if (CollCircleToMouseDown(StartCircle, MOUSE_INPUT_LEFT) == TRUE//円のどこかをマウス左ボタンで押したとき
-	//	&& GameSceneFrameCount[NowGameScene] >= GameSceneChangeFrame)	//かつ、切り替え可能なフレーム数を超えたら
-	//{
-	//	//効果音を再生
-	//	PlayMusic(ButtonClickSE);
-	//	
-	//	//音楽停止
-	//	PauseMusic(&TitleBGM);
-
-	//	//シーン切り替え
-	//	ChangeGameScene = PlayScene;
-
-	//	//すぐに切り替える
-	//	return;
-	//}
-
-	////画像エフェクト開始
-	//GraphicFxStart(
-	//	&TitleButton,		//どの画像にエフェクトをかける？
-	//	GraFxFadeInOut,		//どんなエフェクトをかける？
-	//	GraFxInfinity,		//エフェクト無限継続
-	//	1000);				//1000ミリ秒間隔
 
 	return;
 }
@@ -203,10 +173,7 @@ VOID TitleProc(VOID)
 VOID TitleDraw(VOID)
 {
 	ControllerUpdate();//コントローラーの更新処理
-
-	// アナログスティックの値を取得して表示
-	float axisX = GetAxisX();
-	float axisY = GetAxisY();
+	UpdateControllerPointer(); // controllerPointRect を更新
 
 	if (GameDebug == TRUE)
 	{
@@ -222,10 +189,11 @@ VOID TitleDraw(VOID)
 
 		//メニューの選択
 		{
+
 			if (CollRectToRect(TimeAttackRect, controllerPointRect))
 			{
 				DrawRect(TimeAttackRect, Color_tomato, TRUE);
-				if (GetButtonDown(BUTTON_A)||KeyDown(KEY_INPUT_RETURN))
+				if (GetButtonDown(BUTTON_A)||(KeyDown(KEY_INPUT_RETURN)|| CollRectToMouseClick(controllerPointRect, MOUSE_INPUT_LEFT)))
 				{
 					//効果音を再生
 					PlayMusic(ButtonClickSE);
@@ -247,7 +215,7 @@ VOID TitleDraw(VOID)
 			if (CollRectToRect(RuleRunRect, controllerPointRect))
 			{
 				DrawRect(RuleRunRect, Color_tomato, TRUE);
-				if (GetButtonDown(BUTTON_A) || KeyDown(KEY_INPUT_RETURN))
+				if (GetButtonDown(BUTTON_A) || (KeyDown(KEY_INPUT_RETURN) || CollRectToMouseClick(controllerPointRect,MOUSE_INPUT_LEFT)))
 				{
 					//効果音を再生
 					PlayMusic(ButtonClickSE);
@@ -265,48 +233,6 @@ VOID TitleDraw(VOID)
 			else {
 				DrawRect(RuleRunRect, Color_white, TRUE);
 			}
-		}
-
-		// スティックでカーソル移動
-		{
-			if (CheckHitKey(KEY_INPUT_A) || axisX <= -0.5f) {
-				LeftPlayerPosition -= StickSensitivity;
-				RightPlayerPosition -= StickSensitivity;
-			}
-			else if (CheckHitKey(KEY_INPUT_D) || axisX >= 0.5f) {
-				LeftPlayerPosition += StickSensitivity;
-				RightPlayerPosition += StickSensitivity;
-			}
-
-			if (CheckHitKey(KEY_INPUT_W) || axisY >= 0.5f) {
-				TopPlayerPosition -= StickSensitivity;
-				BottomPlayerPosition -= StickSensitivity;
-			}
-			else if (CheckHitKey(KEY_INPUT_S) || axisY <= -0.5f) {
-				TopPlayerPosition += StickSensitivity;
-				BottomPlayerPosition += StickSensitivity;
-			}
-
-			// 画面外に出ないように制限する処理
-			if (LeftPlayerPosition < 0) {
-				LeftPlayerPosition = 0;
-				RightPlayerPosition = 25.0f; // 矩形の幅を保持
-			}
-			if (RightPlayerPosition > GameWidth) {
-				RightPlayerPosition = GameWidth;
-				LeftPlayerPosition = GameWidth - 25.0f; // 矩形の幅を保持
-			}
-			if (TopPlayerPosition < 0) {
-				TopPlayerPosition = 0;
-				BottomPlayerPosition = 25.0f; // 矩形の高さを保持
-			}
-			if (BottomPlayerPosition > GameHeight) {
-				BottomPlayerPosition = GameHeight;
-				TopPlayerPosition = GameHeight - 25.0f; // 矩形の高さを保持
-			}
-
-			// 更新した値をcontrollerPointRectに反映
-			controllerPointRect = GetRect(LeftPlayerPosition, TopPlayerPosition, RightPlayerPosition, BottomPlayerPosition);
 
 			// 矩形を描画
 			DrawRect(controllerPointRect, GetColor(255, 0, 0), TRUE);
@@ -505,10 +431,7 @@ VOID RuleProc(VOID)
 VOID RuleDraw(VOID)
 {
 	ControllerUpdate();//コントローラーの更新処理
-
-	// アナログスティックの値を取得して表示
-	float axisX = GetAxisX();
-	float axisY = GetAxisY();
+	UpdateControllerPointer(); // controllerPointRect を更新
 
 	if (GameDebug == TRUE)
 	{
@@ -528,7 +451,7 @@ VOID RuleDraw(VOID)
 		if (CollRectToRect(backSceneRect, controllerPointRect))
 		{
 			DrawRect(backSceneRect, Color_tomato, TRUE);
-			if (GetButtonDown(BUTTON_A) || KeyDown(KEY_INPUT_RETURN))
+			if (GetButtonDown(BUTTON_A) || (KeyDown(KEY_INPUT_RETURN) || CollRectToMouseClick(controllerPointRect, MOUSE_INPUT_LEFT)))
 			{
 				//効果音を再生
 				PlayMusic(ButtonClickSE);
@@ -548,8 +471,42 @@ VOID RuleDraw(VOID)
 		}
 	}
 
-
 	{
+		// 更新した値をcontrollerPointRectに反映
+		controllerPointRect = GetRect(LeftPlayerPosition, TopPlayerPosition, RightPlayerPosition, BottomPlayerPosition);
+
+		// 矩形を描画
+		DrawRect(controllerPointRect, GetColor(255, 0, 0), TRUE);
+
+		DrawFormatStringToHandleAlign(
+			170, 640, Align_Center, Color_brack, fontJiyu50ptFuch.Handle,
+			"%s", "戻る");
+	}
+	return;
+}
+
+VOID UpdateControllerPointer(VOID) {
+	XINPUT_STATE padState;
+	BOOL controllerConnected = (GetJoypadXInputState(DX_INPUT_PAD1, &padState) == 0);
+
+	if (!controllerConnected) {
+		// コントローラーが接続されていないときはマウスの位置を取得
+		int mouseX, mouseY;
+		GetMousePoint(&mouseX, &mouseY);
+
+		const float halfSize = 12.5f;
+		LeftPlayerPosition = mouseX - halfSize;
+		TopPlayerPosition = mouseY - halfSize;
+		RightPlayerPosition = mouseX + halfSize;
+		BottomPlayerPosition = mouseY + halfSize;
+
+		controllerPointRect = GetRect(LeftPlayerPosition, TopPlayerPosition, RightPlayerPosition, BottomPlayerPosition);
+	}
+	else {
+		// スティック操作で移動
+		float axisX = GetAxisX();
+		float axisY = GetAxisY();
+
 		if (CheckHitKey(KEY_INPUT_A) || axisX <= -0.5f) {
 			LeftPlayerPosition -= StickSensitivity;
 			RightPlayerPosition -= StickSensitivity;
@@ -586,15 +543,6 @@ VOID RuleDraw(VOID)
 			TopPlayerPosition = GameHeight - 25.0f; // 矩形の高さを保持
 		}
 
-		// 更新した値をcontrollerPointRectに反映
 		controllerPointRect = GetRect(LeftPlayerPosition, TopPlayerPosition, RightPlayerPosition, BottomPlayerPosition);
-
-		// 矩形を描画
-		DrawRect(controllerPointRect, GetColor(255, 0, 0), TRUE);
-
-		DrawFormatStringToHandleAlign(
-			170, 640, Align_Center, Color_brack, fontJiyu50ptFuch.Handle,
-			"%s", "戻る");
 	}
-	return;
 }

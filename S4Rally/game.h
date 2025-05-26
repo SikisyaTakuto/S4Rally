@@ -80,3 +80,5 @@ extern VOID RuleInit(VOID);//ルール・操作説明初期化
 extern VOID RuleCtrl(VOID);//ルール・操作説明管理
 extern VOID RuleProc(VOID);//ルール・操作説明処理
 extern VOID RuleDraw(VOID);//ルール・操作説明描画
+
+extern VOID UpdateControllerPointer(VOID);
