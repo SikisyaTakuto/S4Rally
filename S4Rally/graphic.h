@@ -25,12 +25,6 @@
 
 #define GraphicPathTitleBackImage	".\\graphic\\TitleBack.png"
 #define GraphicPathTitleLogo		".\\graphic\\TitleLogo.png"
-//#define GraphicPathTitleButton		".\\graphic\\StartButton.png"	//@ƒTƒCƒgb‹ó‘z‹Èü	‚t‚q‚kbhttps://kopacurve.blog.fc2.com/
-//#define GraphicPathBackGrass		".\\graphic\\weed.png"
-//#define BackGrassNum				15		//‘Œ´‚Ì”wŒi‚ÌŒÂ”
-//#define GraphicPathGameOverLogo		".\\graphic\\GameOverLogo.png"
-//#define GraphicPathNewrecordLogo	".\\graphic\\NewrecordLogo.png"
-
 
 //—ñ‹“Œ^
 enum Graphic_Align

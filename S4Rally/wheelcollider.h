@@ -27,7 +27,7 @@ public:
         float asymptoteValue;  //摩擦曲線の漸近線のフォース値
         float stiffness;       //Extremum Value と Asymptote Value に対する乗数 (デフォルトは 1)。 0に設定すると、ホイールからのすべての摩擦が完全に無効
     }forwardFriction;
-    
+
     /// <summary>
     /// ホイールが横転する際のタイヤの摩擦のプロパティ
     /// </summary>

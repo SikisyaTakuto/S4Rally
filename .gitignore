@@ -1,4 +1,17 @@
-# Visual Studio関連ファイル
+# まずすべてを無視
+*
+
+# .gitignore 自体は無視しない
+!.gitignore
+
+# cpp と h ファイルは追跡対象とする
+!*.cpp
+!*.h
+
+# フォルダ構成維持のためにディレクトリは許可（中身は引き続き無視）
+!*/
+
+# Visual Studio関連ファイルを明示的に無視（保険として）
 .vscode/
 *.suo
 *.ncb
@@ -26,7 +39,6 @@
 *.exp
 *.iobj
 *.ipdb
-*.log
 *.idb
 *.pch
 *.res
@@ -56,20 +68,14 @@ DxUseCLib.lib
 DxShaderBin.lib
 DxShaderCode.lib
 
-# DxLib_VC関連の不要ファイル
 DxLib_VC/
-DxLib_VC/DxLib.lib
-DxLib_VC/DxLib.x86.lib
-DxLib_VC/DxLib.x64.lib
-DxLib_VC/DxGraphics.lib
-DxLib_VC/DxGraphicsX.lib
-DxLib_VC/DxUseCLib.lib
-DxLib_VC/DxShaderBin.lib
-DxLib_VC/DxShaderCode.lib
 DxLib_VC/Debug/
 DxLib_VC/Release/
+DxLib_VC/*.lib
+DxLib_VC/*.dll
+DxLib_VC/*.exe
+DxLib_VC/*.obj
 
-# DxLibSourceTest_WithUseCLib関連の不要ファイル
 DxLibSourceTest_WithUseCLib/
 DxLibSourceTest_WithUseCLib/Debug/
 DxLibSourceTest_WithUseCLib/Release/
@@ -92,13 +98,11 @@ FBXSDK/*.exp
 FBXSDK/*.exe
 FBXSDK/*.obj
 
-# 音楽ファイル（mp3）
+# 音楽・フォントファイル
 *.mp3
-
-# フォントファイル（ttf）
 *.ttf
 
-# その他の不要ファイル
+# その他
 Thumbs.db
 *.bak
 *.tmp

@@ -18,16 +18,25 @@ Map::~Map()
 // マップ初期化
 void Map::Init()
 {
-    // Map.cpp → Init() にて
-    VECTOR lightDirection = VGet(1000.0f, 10000.0f, 0.0f);
-    SetLightDirection(lightDirection);
-    SetLightEnable(TRUE); // ライトを有効化（念のため）
-    SetLightAmbColor(GetColorF(0.3f, 0.3f, 0.3f, 1.0f)); // 環境光の色をちょっと弱め
+    // ライトの方向を設定（やや斜め上からの光）
+    VECTOR lightDir = VNorm(VGet(-1.0f, -1.0f, -1.0f));
+    ChangeLightTypeDir(lightDir);
+
+    // ライトの有効化（デフォルトでは無効のことがある）
+    SetUseLighting(TRUE);
+
+    // アンビエントライトをやや暗めに設定（影の表現）
+    SetLightAmbColor(GetColorF(0.3f, 0.3f, 0.3f,0.0f));
+
+    // ディフューズライトカラー（拡散光）
+    SetLightDifColor(GetColorF(1.0f, 1.0f, 1.0f, 0.0f));
+
+    // スペキュラ（反射光）設定（必要に応じて）
+    SetLightSpcColor(GetColorF(0.5f, 0.5f, 0.5f, 0.0f));
 
     // モデル読み込み
-    modelHandle = MV1LoadModel("fbx/Stage/ContainerTerminal.fbx"); // ←パスはあなたのモデルデータに合わせてね！
-
-    MV1SetPosition(modelHandle, VGet(0.0f,50.0f, 0.0f));
+    modelHandle = MV1LoadModel("fbx/Stage/ContainerTerminal.fbx");
+    MV1SetPosition(modelHandle, VGet(0.0f, 50.0f, 0.0f));
 }
 
 // マップ更新（今回は何もなし）

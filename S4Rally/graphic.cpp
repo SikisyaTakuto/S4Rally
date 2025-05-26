@@ -7,13 +7,6 @@
 
 Graphic TitleBackImage;				//タイトル背景画像
 Graphic TitleLogo;					//タイトルロゴ
-/*
-Graphic TitleButton;				//タイトルボタン
-Graphic BackImageTurn;				//背景反転
-Graphic BackGrass[BackGrassNum];	//草原
-Graphic GameoverLogo;		//ゲームオーバーロゴ
-Graphic NewrecordLogo;		//ニューレコードロゴ
-*/
 //ここまで
 
 //読み込み・ハンドル生成
@@ -34,50 +27,6 @@ BOOL Graphic_Init(VOID)
 		GetGameWindowCenter(),				//ロゴは画面中央から
 		GetRect(0, 0, 0, 0),				//当たり判定の余白は無し
 		GraAlignBottomC); if (TitleLogo.Handle == -1) { return FALSE; }
-
-
-	////タイトルボタン
-	//TitleButton = LoadGraphic(
-	//	GraphicPathTitleButton,
-	//	GetPoint(GetGameWindowCenter().x, GetGameWindowCenter().y + 50),		//ボタンは下辺りから
-	//	GetRect(10, 10, 10, 10),		//当たり判定を挟める
-	//	GraAlignTopC); if (TitleButton.Handle == -1) { return FALSE; }
-
-	////プレイ背景画像
-	//BackImageTurn = TitleBackImage;
-	//BackImageTurn.c.Pos.x = BackImageTurn.c.Pos.x + BackImageTurn.c.Width;
-	//BackImageTurn.c.Pos.y = 0;
-
-	////草原
-	//BackGrass[0] = LoadGraphic(
-	//	GraphicPathBackGrass,
-	//	GetPoint(0, GameHeight),			//草原のY位置は画面下
-	//	GetRect(0, 0, 0, 0),		//当たり判定の余白は無し
-	//	GraAlignBottomL); if (BackGrass[0].Handle == -1) { return FALSE; }
-
-	//for (int i = 1; i < BackGrassNum; i++)
-	//{
-	//	//情報をコピー
-	//	BackGrass[i] = BackGrass[i - 1];
-
-	//	//画像を横に並べる
-	//	BackGrass[i].c.Pos.x = BackGrass[i - 1].c.Pos.x + BackGrass[i - 1].c.Width;
-	//}
-
-	////ゲームオーバーロゴ
-	//GameoverLogo = LoadGraphic(
-	//	GraphicPathGameOverLogo,
-	//	GetPoint(GetGameWindowCenter().x, GetGameWindowCenter().y),				//ロゴは画面中央から
-	//	GetRect(0, 0, 0, 0),				//当たり判定の余白は無し
-	//	GraAlignTopC); if (GameoverLogo.Handle == -1) { return FALSE; }
-
-	////ニューレコードロゴ
-	//NewrecordLogo = LoadGraphic(
-	//	GraphicPathNewrecordLogo,
-	//	GetPoint(GetGameWindowCenter().x, GetGameWindowCenter().y - 200),				//ロゴは画面中央から
-	//	GetRect(0, 0, 0, 0),				//当たり判定の余白は無し
-	//	GraAlignTopC); if (GameoverLogo.Handle == -1) { return FALSE; }
-
 	return TRUE;
 }
 
@@ -87,11 +36,6 @@ VOID Graphic_End(VOID)
 
 	DeleteGraphic(TitleBackImage);
 	DeleteGraphic(TitleLogo);
-	//DeleteGraphic(TitleButton);
-	//DeleteGraphic(BackImageTurn);
-	//for (int i = 0; i < BackGrassNum; i++) { DeleteGraphic(BackGrass[i]); }
-	//DeleteGraphic(GameoverLogo);
-	//DeleteGraphic(NewrecordLogo);
 
 
 	return;

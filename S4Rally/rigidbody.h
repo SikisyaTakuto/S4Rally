@@ -34,4 +34,4 @@ public:
     // 毎フレーム呼び出し、物理状態を更新する
     // deltaTime: 1フレームあたりの経過時間（秒）
     void Update(float deltaTime);
-}
+};

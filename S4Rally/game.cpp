@@ -2,18 +2,6 @@
 
 //ヘッダファイル読み込み
 #include "game.h"
-#include "key.h"
-#include "mouse.h"
-#include "geometory.h"
-#include "font.h"
-#include "music.h"
-#include "graphic.h"
-#include "map.h"
-#include "controller.h"
-#include "car.h"
-#include "camera.h"
-#include "timer.h"
-
 
 //グローバル変数
 Car car;         // 車オブジェクト

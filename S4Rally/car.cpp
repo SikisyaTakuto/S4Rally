@@ -4,7 +4,6 @@
 //外部参照
 extern Map map;                    // マップ（地形や障害物情報）
 RigidBody rigidbody;               // 車体の物理挙動を担当するクラス
-SuspensionSpring suspensionSpring; // サスペンション用のスプリングクラス
 
 //コンストラクタ
 Car::Car()

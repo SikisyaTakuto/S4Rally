@@ -30,18 +30,17 @@ VOID GameAndDxLibAllEnd(VOID)
 // プログラムは WinMain から始まります
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)//Windows用ソフトのプログラムのスタート地点となる関数の宣言
 {
-	SetOutApplicationLogValidFlag(FALSE);//Log.txt を出力しない　
-	ChangeWindowMode(TRUE);//ウィンドウモードの設定
-	SetGraphMode(GameWidth, GameHeight, GameColor);//解像度を設定
-	SetWindowSize(GameWidth, GameHeight);//ウィンドウの大きさを設定
-	SetMainWindowText(GameTitle);//ウィンドウのタイトル
-	SetBackgroundColor(0, 0, 0);//ウィンドウの背景色
-	SetWaitVSyncFlag(GameVsync);//垂直同期の設定
-	SetAlwaysRunFlag(TRUE);//非アクティブでも実行
+	SetOutApplicationLogValidFlag(FALSE);			//Log.txt を出力しない　
+	ChangeWindowMode(TRUE);							//ウィンドウモードの設定
+	SetGraphMode(GameWidth, GameHeight, GameColor);	//解像度を設定
+	SetWindowSize(GameWidth, GameHeight);			//ウィンドウの大きさを設定
+	SetMainWindowText(GameTitle);					//ウィンドウのタイトル
+	SetBackgroundColor(0, 0, 0);					//ウィンドウの背景色
+	SetWaitVSyncFlag(GameVsync);					//垂直同期の設定
+	SetAlwaysRunFlag(TRUE);							//非アクティブでも実行
+	SetWindowIconID(GameIcon);						//アイコンを設定
 
-	SetWindowIconID(GameIcon);//アイコンを設定
-
-	if (DxLib_Init() == -1)		// ＤＸライブラリ初期化処理
+	if (DxLib_Init() == -1) // ＤＸライブラリ初期化処理
 	{
 		return -1;			// エラーが起きたら直ちに終了
 	}
@@ -49,7 +48,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//音楽初期化
 	if (Music_Init() == FALSE)
 	{
-		GameAndDxLibAllEnd();	//ゲーム終了の後始末
+		//ゲーム終了の後始末
+		GameAndDxLibAllEnd();
 		return -1;
 	}
 
@@ -61,14 +61,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	{
 		//ゲーム終了の後始末
 		GameAndDxLibAllEnd();
-
 		return -1;
 	}
 
 	//画像初期化
 	if (Graphic_Init() == FALSE)
 	{
-		GameAndDxLibAllEnd();	//ゲーム終了の後始末
+		//ゲーム終了の後始末
+		GameAndDxLibAllEnd();	
 		return -1;
 	}
 
@@ -110,8 +110,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		//ここに全てのゲームの動作が入る
 		{
-			FPSCheck();//FPS計測
-			KeyUpdate();//キーボード更新
+			FPSCheck();   //FPS計測
+			KeyUpdate();  //キーボード更新
 			MouseUpdate();//マウス更新
 
 			//次のシーンを初期化
@@ -121,17 +121,17 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				//シーン切り替え
 				switch (ChangeGameScene)
 				{
-				case TitleScene:
-					TitleInit();
+				case TitleScene:	//タイトルシーン
+					TitleInit();	//タイトル初期化
 					break;
-				case PlayScene:
-					PlayInit();
+				case PlayScene:		//プレイシーン
+					PlayInit();		//プレイ初期化
 					break;
-				case ResultScene:
-					ResultInit();
+				case ResultScene:	//リザルトシーン
+					ResultInit();	//リザルト初期化
 					break;
-				case RuleScene:
-					RuleInit();
+				case RuleScene:		//ルール・操作説明シーン
+					RuleInit();		//ルール・操作説明初期化
 					break;
 				default:
 					break;
@@ -145,17 +145,17 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				//シーン切り替え
 				switch (NowGameScene)
 				{
-				case TitleScene:
-					TitleCtrl();
+				case TitleScene:	//タイトルシーン
+					TitleCtrl();	//タイトル初期化
 					break;
-				case PlayScene:
-					PlayCtrl();
+				case PlayScene:		//プレイシーン
+					PlayCtrl();		//プレイ初期化
 					break;
-				case ResultScene:
-					ResultCtrl();
+				case ResultScene:	//リザルトシーン
+					ResultCtrl();	//リザルト初期化
 					break;
-				case RuleScene:
-					RuleCtrl();
+				case RuleScene:		//ルール・操作説明シーン
+					RuleCtrl();		//ルール・操作説明初期化
 				default:
 					break;
 				}
@@ -174,4 +174,3 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	return 0;				// ソフトの終了 
 }
-
