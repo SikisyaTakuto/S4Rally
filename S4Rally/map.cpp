@@ -18,7 +18,8 @@ Map::~Map()
 // マップ初期化
 void Map::Init()
 {
-    ChangeLightTypeDir(VGet(-10.0f, 10.0f, -10.0f));
+    // ライティングの計算をしないように設定を変更
+    SetUseLighting(FALSE);
 
     // モデル読み込み
     modelHandle = MV1LoadModel("fbx/Stage/ContainerTerminal.fbx");

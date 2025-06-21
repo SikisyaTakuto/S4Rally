@@ -97,40 +97,31 @@ void Car::Update(float deltaTime)
 
     // 車体の当たり判定処理
     if (CheckBodyCollision()) {
-        // 前後左右それぞれのヒットフラグに応じて速度や入力を制御
-        if (hitFront && accelInput > 0.0f) {
-            // 正面かぶつかったら速度を大幅に減速
+        // ---- 通常の衝突 ----
+        if (hitFront && accelInput >= 0.0f) {
             rigidbody.velocity = VScale(rigidbody.velocity, 0.3f);
         }
-        if (hitBack && accelInput < 0.0f) {
-            accelInput = 0.0f; // 後退を止める
-            // 背面にぶつかったら速度を大幅に減速
+        if (hitBack && accelInput <= 0.0f) {
             rigidbody.velocity = VScale(rigidbody.velocity, 0.3f);
         }
-        if (hitLeft && steerInput < 0.0f) {
-            // 左にぶつかったら速度を大幅に減速
+        if (hitLeft && steerInput <= 0.0f) {
             rigidbody.velocity = VScale(rigidbody.velocity, 0.3f);
         }
-        if (hitRight && steerInput > 0.0f) {
-            // 右にぶつかったら速度を大幅に減速
+        if (hitRight && steerInput >= 0.0f) {
             rigidbody.velocity = VScale(rigidbody.velocity, 0.3f);
         }
 
-        // ここで、フラグに応じて車の動きを制御できる
-        if (hitFrontDeceleration && accelInput > 0.0f) {
-            // 正面か背面にぶつかったら速度を大幅に減速
+        // ---- 減速ゾーン（キー入力に関係なく）----
+        if (hitFrontDeceleration) {
             rigidbody.velocity = VScale(rigidbody.velocity, 0.1f);
         }
-        if (hitBackDeceleration && accelInput < 0.0f) {
-            // 正面か背面にぶつかったら速度を大幅に減速
+        if (hitBackDeceleration) {
             rigidbody.velocity = VScale(rigidbody.velocity, 0.1f);
         }
-        if (hitLeftDeceleration && steerInput < 0.0f) {
-            // 左にぶつかったら速度を大幅に減速
+        if (hitLeftDeceleration) {
             rigidbody.velocity = VScale(rigidbody.velocity, 0.1f);
         }
-        if (hitRightDeceleration && steerInput > 0.0f) {
-            // 右にぶつかったら速度を大幅に減速
+        if (hitRightDeceleration) {
             rigidbody.velocity = VScale(rigidbody.velocity, 0.1f);
         }
     }

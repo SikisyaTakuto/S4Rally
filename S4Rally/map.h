@@ -17,6 +17,9 @@ public:
 
     int modelHandle;  // モデルハンドル
 
+    int vShaderHandle;
+    int pShaderHandle;
+
     Map();          // コンストラクタ
     ~Map();         // デストラクタ
 
